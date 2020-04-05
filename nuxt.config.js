@@ -13,6 +13,17 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  js: [
+    { src: '~/assets/js/bootstrap.min.js' }
+  ],
+  css: [
+    { src: '~/assets/css/bootstrap.css' },
+    { src: '~/assets/css/responsive.css' },
+    { src: '~/assets/css/ui.css' },
+    { src: '~/assets/fonts/fontawesome/css/all.css' },
+    { src: '~/assets/fonts/roboto/font.css' },
+    // { src: '~/assets/css/ui.css' }
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -24,7 +35,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -33,7 +44,8 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    vendor: ['~/assets/css/boostrap.css'],
   }
 }
 
