@@ -4,7 +4,7 @@
     <SectionHeader></SectionHeader>
     <SectionSpecial></SectionSpecial>
     <SectionMenuBar></SectionMenuBar>
-    <RecommendedProducts :productList="productList"></RecommendedProducts>
+    <RecommendedProducts :productList="productList" @productSelected="setProduct"></RecommendedProducts>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -34,6 +34,14 @@ export default {
   computed: {
     productList() {
       return this.$store.getters.GET_ALL_PRODUCTS_RECOMMENDED;
+    }
+  },
+  methods: {
+    setProduct(data) {
+      this.$store.commit("storeProduct", data);
+      this.$router.push({
+        path: "/product-detail"
+      });
     }
   }
 };

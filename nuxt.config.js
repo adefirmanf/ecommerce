@@ -20,6 +20,7 @@ module.exports = {
     { src: '~/assets/css/bootstrap.css' },
     { src: '~/assets/css/responsive.css' },
     { src: '~/assets/css/ui.css' },
+    { src: '~/assets/css/custom.css' },
     { src: '~/assets/fonts/fontawesome/css/all.css' },
     { src: '~/assets/fonts/roboto/font.css' },
     // { src: '~/assets/css/ui.css' }

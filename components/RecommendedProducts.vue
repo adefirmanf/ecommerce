@@ -9,9 +9,14 @@
 
       <div class="row">
         <!-- Set loop in here -->
-        <div class="col-md-3" v-for="list in productList" :key="list.href">
+        <div
+          class="col-md-3"
+          v-for="list in productList"
+          :key="list.href"
+          @click="selectProduct(list)"
+        >
           <div href="#" class="card card-product-grid">
-            <a :href="list.href" class="img-wrap">
+            <a href="#" class="img-wrap">
               <img :src="list.img[0]" />
             </a>
             <figcaption class="info-wrap">
@@ -34,6 +39,11 @@ export default {
     productList: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    selectProduct(data) {
+      this.$emit("productSelected", data);
     }
   }
 };

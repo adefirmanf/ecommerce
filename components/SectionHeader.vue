@@ -1,5 +1,5 @@
 <template>
-  <section class="section-main bg padding-y">
+  <section class="section-main bg padding-y margin-y">
     <div class="container">
       <div class="row">
         <aside class="col-md-3">
@@ -42,7 +42,4 @@
   </section>
 </template>
 <style scoped>
-.padding-y {
-  margin-top: 120px;
-}
 </style>
