@@ -10,18 +10,9 @@
               </a>
             </div>
             <!-- img-big-wrap.// -->
-            <div class="thumbs-wrap">
+            <div class="thumbs-wrap" v-for="(img, index) in product.img" :key="index">
               <a href="#" class="item-thumb">
-                <!-- <img src="../images/items/12-1.jpg" /> -->
-              </a>
-              <a href="#" class="item-thumb">
-                <!-- <img src="../images/items/12-2.jpg" /> -->
-              </a>
-              <a href="#" class="item-thumb">
-                <!-- <img src="../images/items/12.jpg" /> -->
-              </a>
-              <a href="#" class="item-thumb">
-                <!-- <img src="../images/items/4.jpg" /> -->
+                <img :src="img" />
               </a>
             </div>
             <!-- thumbs-wrap.// -->

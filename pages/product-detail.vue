@@ -20,9 +20,7 @@ export default {
   },
   data() {
     return {
-      product: {
-        name: "Hello world"
-      }
+      product: {}
     };
   },
   mounted() {

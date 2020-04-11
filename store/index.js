@@ -12,6 +12,7 @@ const createStore = () => {
     state: {
       article: {},
       products: [],
+      carts: [],
       detailProduct: {}
     },
     getters: {
