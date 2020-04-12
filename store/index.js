@@ -1,6 +1,8 @@
 import Vuex from 'vuex'
 import axios from 'axios'
 
+
+const CARTS = 'carts'
 const createStore = () => {
   return new Vuex.Store({
     actions: {
@@ -8,6 +10,12 @@ const createStore = () => {
         let { data } = await axios.get('http://localhost:8080/products?search=kaos&merchant=blibli')
         commit('setProducts', data[0].data)
       },
+      async GET_CARTS({ commit }) {
+        console.log(localStorage.getItem(CARTS))
+        if (localStorage.getItem(CARTS)) {
+          commit('initializeCarts', localStorage.getItem(CARTS))
+        }
+      }
     },
     state: {
       article: {},
@@ -17,7 +25,8 @@ const createStore = () => {
     },
     getters: {
       GET_ALL_PRODUCTS_RECOMMENDED: state => state.products.slice(0, (state.products.length) - (state.products.length - 8)),
-      GET_PRODUCT_BY_ID: state => state.detailProduct
+      GET_PRODUCT_BY_ID: state => state.detailProduct,
+      GET_CARTS: state => state.carts
     },
     mutations: {
       setArticle(state, data) {
@@ -25,10 +34,16 @@ const createStore = () => {
       },
       setProducts(state, data) {
         state.products = data
-
       },
       storeProduct(state, data) {
         state.detailProduct = data
+      },
+      setCarts(state, data) {
+        state.carts.push(data)
+        localStorage.setItem(CARTS, JSON.stringify(state.carts))
+      },
+      initializeCarts(state, data) {
+        state.carts = JSON.parse(data)
       }
     }
   })

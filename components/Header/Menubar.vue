@@ -28,7 +28,7 @@
                 <a href="#" class="icon icon-sm rounded-circle border">
                   <i class="fa fa-shopping-cart"></i>
                 </a>
-                <span class="badge badge-pill badge-danger notify">0</span>
+                <span class="badge badge-pill badge-danger notify">{{totalCart}}</span>
               </div>
               <div class="widget-header icontext">
                 <a href="#" class="icon icon-sm rounded-circle border">
@@ -54,3 +54,17 @@
     <!-- header-main .// -->
   </header>
 </template>
+
+<script>
+export default {
+  mounted() {
+    this.$store.dispatch("GET_CARTS");
+  },
+  computed: {
+    totalCart() {
+      console.log("TOTAL CART", this.$store.getters.GET_CARTS);
+      return this.$store.getters.GET_CARTS.length;
+    }
+  }
+};
+</script>

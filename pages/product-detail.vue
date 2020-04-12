@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <ProductDetail :product="product"></ProductDetail>
+    <ProductDetail :product="product" @addToCart="addToCart"></ProductDetail>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -25,7 +25,12 @@ export default {
   },
   mounted() {
     this.product = this.$store.getters.GET_PRODUCT_BY_ID;
-    console.log(this.product);
+  },
+  methods: {
+    addToCart(data) {
+      console.log(data);
+      this.$store.commit("setCarts", data);
+    }
   }
 };
 </script>

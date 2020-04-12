@@ -101,11 +101,11 @@
               <!-- col.// -->
             </div>
             <!-- row.// -->
-            <a href="#" class="btn btn-primary">Buy now</a>
-            <a href="#" class="btn btn-outline-primary">
+            <button class="btn btn-primary">Buy now</button>
+            <button @click="addToCart(product)" class="btn btn-outline-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
-            </a>
+            </button>
           </article>
           <!-- product-info-aside .// -->
         </main>
@@ -122,6 +122,11 @@ export default {
     product: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    addToCart(data) {
+      this.$emit("addToCart", data);
     }
   }
 };
