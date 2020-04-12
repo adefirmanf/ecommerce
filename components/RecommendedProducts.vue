@@ -10,7 +10,7 @@
       <div class="row">
         <!-- Set loop in here -->
         <div
-          class="col-md-3"
+          class="col-md-2"
           v-for="list in productList"
           :key="list.href"
           @click="selectProduct(list)"

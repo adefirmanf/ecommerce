@@ -14,7 +14,8 @@ module.exports = {
     ]
   },
   js: [
-    { src: '~/assets/js/bootstrap.min.js' }
+    { src: '~/assets/js/bootstrap.min.js' },
+    { src: '~/assets/js/scripts.js' }
   ],
   css: [
     { src: '~/assets/css/bootstrap.css' },

@@ -1,7 +1,7 @@
 <template>
   <div class="always-on-top">
     <Menubar></Menubar>
-    <Navbar></Navbar>
+    <!-- <Navbar></Navbar> -->
   </div>
 </template>
 

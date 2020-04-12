@@ -11,7 +11,6 @@ const createStore = () => {
         commit('setProducts', data[0].data)
       },
       async GET_CARTS({ commit }) {
-        console.log(localStorage.getItem(CARTS))
         if (localStorage.getItem(CARTS)) {
           commit('initializeCarts', localStorage.getItem(CARTS))
         }
@@ -24,7 +23,7 @@ const createStore = () => {
       detailProduct: {}
     },
     getters: {
-      GET_ALL_PRODUCTS_RECOMMENDED: state => state.products.slice(0, (state.products.length) - (state.products.length - 8)),
+      GET_ALL_PRODUCTS_RECOMMENDED: state => state.products.slice(0, (state.products.length) - (state.products.length - 12)),
       GET_PRODUCT_BY_ID: state => state.detailProduct,
       GET_CARTS: state => state.carts
     },
