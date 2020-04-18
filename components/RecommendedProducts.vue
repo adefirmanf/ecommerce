@@ -21,7 +21,7 @@
             </a>
             <figcaption class="info-wrap">
               <a href="#" class="title">{{list.name}}</a>
-              <div class="price mt-1">{{list.price}}</div>
+              <div class="price mt-1">Rp.{{list.price.toLocaleString()}}</div>
               <!-- price-wrap.// -->
             </figcaption>
           </div>
