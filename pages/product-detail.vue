@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     addToCart(data) {
-      console.log(data);
       this.$store.commit("setCarts", data);
     }
   }

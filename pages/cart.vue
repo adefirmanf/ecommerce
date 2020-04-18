@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <CartDetail :carts="getCarts"></CartDetail>
+    <CartDetail :carts="cartList" :price="price"></CartDetail>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -17,10 +17,16 @@ export default {
     CartDetail,
     Footer
   },
-  computed: {
-    getCarts() {
-      return this.$store.getters.GET_CARTS;
-    }
-  }
+  data() {
+    return {
+      cartList: [],
+      price: 0
+    };
+  },
+  mounted() {
+    this.cartList = this.$store.getters.GET_CARTS;
+    this.price = this.cartList.map(a => a.price).reduce((a, b) => a + b);
+  },
+  computed: {}
 };
 </script>
