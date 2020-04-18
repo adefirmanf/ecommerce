@@ -21,6 +21,7 @@
               href="#"
               class="img-wrap custom-padding"
               v-lazy-container="{selector : 'img', loading: '/lazy-load.png'}"
+              v-on:click.prevent
             >
               <img :data-src="list.img[0]" />
             </a>
@@ -75,7 +76,7 @@ export default {
 </script>
 <style scoped>
 .img-wrap.custom-padding {
-  padding: 2px;
+  padding: 4px;
   background-color: #f8f9fa;
 }
 </style>
