@@ -11,12 +11,12 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    scripts: [
+      { src: '~/assets/js/bootstrap.min.js' },
+      { src: '~/assets/js/scripts.js' }
     ]
   },
-  js: [
-    { src: '~/assets/js/bootstrap.min.js' },
-    { src: '~/assets/js/scripts.js' }
-  ],
   css: [
     { src: '~/assets/css/bootstrap.css' },
     { src: '~/assets/css/responsive.css' },
@@ -30,6 +30,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  plugins: ['~/plugins/lazyLoad'],
   /*
   ** Build configuration
   */

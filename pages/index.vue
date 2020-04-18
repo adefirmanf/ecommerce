@@ -4,7 +4,7 @@
     <SectionHeader></SectionHeader>
     <SectionSpecial></SectionSpecial>
     <SectionMenuBar></SectionMenuBar>
-    <RecommendedProducts :productList="productList" @productSelected="setProduct"></RecommendedProducts>
+    <RecommendedProducts :productList="productList" :loaded="loaded" @productSelected="setProduct"></RecommendedProducts>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -28,8 +28,14 @@ export default {
     RecommendedProducts,
     Footer
   },
+  data() {
+    return {
+      loaded: false
+    };
+  },
   async mounted() {
     await this.$store.dispatch("GET_DATA_PRODUCTS");
+    this.loaded = true;
   },
   computed: {
     productList() {
