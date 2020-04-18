@@ -35,7 +35,7 @@
                   </td>
                   <td>
                     <div class="price-wrap">
-                      <var class="price">{{item.price}}</var>
+                      <var class="price">Rp.{{item.price.toLocaleString()}}</var>
                     </div>
                     <!-- price-wrap .// -->
                   </td>
@@ -64,6 +64,49 @@
           </div>
           <!-- card.// -->
         </aside>
+        <aside class="col-md-3">
+          <div class="card mb-3">
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label>Have coupon?</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" name placeholder="Coupon code" />
+                    <span class="input-group-append">
+                      <button class="btn btn-primary">Apply</button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- card-body.// -->
+          </div>
+          <!-- card .// -->
+          <div class="card">
+            <div class="card-body">
+              <dl class="dlist-align">
+                <dt>Total price:</dt>
+                <dd class="text-right price">Rp.{{price.toLocaleString()}}</dd>
+              </dl>
+              <dl class="dlist-align">
+                <dt>Discount:</dt>
+                <dd class="text-right">Rp.0</dd>
+              </dl>
+              <dl class="dlist-align">
+                <dt>Total:</dt>
+                <dd class="text-right h5">
+                  <strong>Rp.{{price.toLocaleString()}}</strong>
+                </dd>
+              </dl>
+              <hr />
+              <p class="text-center mb-3">
+                <button class="btn btn-primary btn-block">Process to Checkout</button>
+              </p>
+            </div>
+            <!-- card-body.// -->
+          </div>
+          <!-- card .// -->
+        </aside>
       </div>
     </div>
   </section>
@@ -74,6 +117,10 @@ export default {
   props: {
     carts: {
       type: Array,
+      required: true
+    },
+    price: {
+      type: Number,
       required: true
     }
   }
