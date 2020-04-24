@@ -11,13 +11,13 @@
               <h6 class="card-title" small>Shipping Address</h6>
               <table>
                 <tr>
-                  <b>Office</b>
+                  <b>Home</b>
                 </tr>
-                <tr>PT Payfazz Teknologi Nusantara Menara Prima LT 6 Jl. Dr Ide Anak Agung Gde Agung</tr>
-                <tr>Kota Jakarta Selatan, DKI Jakarta</tr>
+                <tr>836 Doctors Drive</tr>
+                <tr>Los Angeles, CA, California</tr>
 
-                <tr>082260365638</tr>
-                <tr>syskeys32@gmail.com</tr>
+                <tr>310-338-1535</tr>
+                <tr>mwi0f95drce@groupbuff.com</tr>
               </table>
             </div>
             <div class="card-footer">

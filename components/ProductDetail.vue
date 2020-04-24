@@ -101,7 +101,7 @@
               <!-- col.// -->
             </div>
             <!-- row.// -->
-            <button class="btn btn-primary">Buy now</button>
+            <a href="cart" class="btn btn-primary">Buy now</a>
             <button @click="addToCart(product)" class="btn btn-outline-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>

@@ -100,7 +100,7 @@
               </dl>
               <hr />
               <p class="text-center mb-3">
-                <button class="btn btn-primary btn-block">Process to Checkout</button>
+                <a href="shipping" class="btn btn-primary btn-block">Process to Checkout</a>
               </p>
             </div>
             <!-- card-body.// -->
