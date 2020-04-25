@@ -34,7 +34,7 @@ jobs:
       uses: sebastianpopp/ftp-action@releases/v2
       with:
         host: ${{ secrets.FTP_HOST }}
-        user: ${{ secrets.FTP_USERNAME }}
+        user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PWD }}
         localDir: "dist"
         remoteDir: "/"
