@@ -1,4 +1,31 @@
+require('dotenv').config()
+/**
+ * gh -> Deployment to FTP Server reserved by College
+ * production -> Deployment to Docker images
+ */
+
+const BASE_URL_API = {
+  local: 'http://localhost:8080',
+  gh: process.env.GH_BASE_URL_API,
+  production: process.env.PROD_BASE_URL_API
+}
+
+const ROUTER_BASE = {
+  local: '/',
+  gh: process.env.GH_BASE_ROUTER,
+  production: process.env.PROD_BASE_ROUTER
+}
+
+const BUILD_ENV = process.env.BUILD_ENV
 module.exports = {
+  env: {
+    baseUrlAPI: BASE_URL_API[BUILD_ENV || 'local'],
+    routerBase: ROUTER_BASE[BUILD_ENV || 'local']
+  },
+  mode: "spa",
+  router: {
+    base: ROUTER_BASE[BUILD_ENV || 'local']
+  },
   /*
   ** Headers of the page
   */

@@ -1,13 +1,14 @@
 import Vuex from 'vuex'
 import axios from 'axios'
 
-
+const BASE_URL_API = process.env.baseUrlAPI
 const CARTS = 'carts'
+
 const createStore = () => {
   return new Vuex.Store({
     actions: {
       async GET_DATA_PRODUCTS({ commit }) {
-        let { data } = await axios.get('http://localhost:8080/products?search=kaos&merchant=blibli')
+        let { data } = await axios.get(`${BASE_URL_API}/products?search=kaos&merchant=blibli`)
         commit('setProducts', data[0].data)
       },
       async GET_CARTS({ commit }) {
