@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import axios from 'axios'
+import lodash from 'lodash'
 
 const BASE_URL_API = process.env.baseUrlAPI
 const CARTS = 'carts'
@@ -26,7 +27,8 @@ const createStore = () => {
     getters: {
       GET_ALL_PRODUCTS_RECOMMENDED: state => state.products.slice(0, (state.products.length) - (state.products.length - 12)),
       GET_PRODUCT_BY_ID: state => state.detailProduct,
-      GET_CARTS: state => state.carts
+      GET_CARTS: state => state.carts,
+      GET_CARTS_BY_GROUP_QTY: state => _.groupBy(state.carts, 'name')
     },
     mutations: {
       setArticle(state, data) {

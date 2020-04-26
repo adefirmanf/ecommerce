@@ -44,6 +44,9 @@
               <small class="label-rating text-success">
                 <i class="fa fa-clipboard-check"></i> 154 orders
               </small>
+              <small class="label-rating text-success">
+                <img src="~/assets/img/blibli.png" class="img-xs" />
+              </small>
             </div>
             <!-- rating-wrap.// -->
 
@@ -98,10 +101,45 @@
                   </label>
                 </div>
               </div>
+            </div>
+            <hr />
+            <div class="form-row">
+              <div class="form-group col-md">
+                <a href class="text-dark">
+                  <div class="card merchant-list selected">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-1">
+                          <img src="~/assets/img/blibli.png" class="img-fluid" />
+                        </div>
+                        <div class="col-md-9">
+                          Castle Kaos Raglan Polos Tangan Pendek Pria
+                          <div class="price">Rp.22,750</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a href class="text-dark">
+                  <div class="card merchant-list">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-1">
+                          <img src="~/assets/img/shopee.png" class="img-fluid" />
+                        </div>
+                        <div class="col-md-9">
+                          Castle Kaos Raglan Polos Tangan Pendek Pria
+                          <div class="price">Rp.22,750</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
               <!-- col.// -->
             </div>
             <!-- row.// -->
-            <a href="cart" class="btn btn-primary">Buy now</a>
+            <a href="cart" @click="addToCart(product)" class="btn btn-primary">Buy now</a>
             <button @click="addToCart(product)" class="btn btn-outline-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
@@ -134,5 +172,15 @@ export default {
 <style scoped>
 .h4 {
   font-size: 26px !important;
+}
+.merchant-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.selected {
+  opacity: 0.4;
+}
+.img-xs {
+  height: auto !important;
 }
 </style>

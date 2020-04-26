@@ -14,28 +14,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in carts" :key="index">
+                <tr v-for="(item, index) in Object.keys(carts)" :key="index">
                   <td>
                     <figure class="itemside align-items-center">
                       <div class="aside">
                         <!-- <img src="../images/items/11.jpg" class="img-sm" /> -->
                       </div>
                       <figcaption class="info">
-                        <a href="#" class="title text-dark">{{item.name}}</a>
+                        <a href="#" class="title text-dark">{{item}}</a>
                       </figcaption>
                     </figure>
                   </td>
                   <td>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
+                    <select class="form-control" disabled>
+                      <option>{{carts[item].length}}</option>
                     </select>
                   </td>
                   <td>
                     <div class="price-wrap">
-                      <var class="price">Rp.{{item.price.toLocaleString()}}</var>
+                      <var class="price">Rp.{{carts[item][0].price.toLocaleString()}}</var>
                     </div>
                     <!-- price-wrap .// -->
                   </td>
@@ -100,7 +97,7 @@
               </dl>
               <hr />
               <p class="text-center mb-3">
-                <a href="shipping" class="btn btn-primary btn-block">Process to Checkout</a>
+                <a href="/shipping" class="btn btn-primary btn-block">Process to Checkout</a>
               </p>
             </div>
             <!-- card-body.// -->
@@ -123,6 +120,7 @@ export default {
       type: Number,
       required: true
     }
-  }
+  },
+  mounted() {}
 };
 </script>

@@ -20,7 +20,7 @@
             <a
               href="#"
               class="img-wrap custom-padding"
-              v-lazy-container="{selector : 'img', loading: '~/assets/img/lazy-load.png'}"
+              v-lazy-container="{selector : 'img', loading: 'lazy-load.png'}"
               v-on:click.prevent
             >
               <img :data-src="list.img[0]" />

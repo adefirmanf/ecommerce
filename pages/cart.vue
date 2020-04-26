@@ -20,12 +20,15 @@ export default {
   data() {
     return {
       cartList: [],
-      price: 0
+      price: 0,
+      test: []
     };
   },
   mounted() {
-    this.cartList = this.$store.getters.GET_CARTS;
-    this.price = this.cartList.map(a => a.price).reduce((a, b) => a + b);
+    this.cartList = this.$store.getters.GET_CARTS_BY_GROUP_QTY;
+    this.price = this.$store.getters.GET_CARTS.map(a => a.price).reduce(
+      (a, b) => a + b
+    );
   },
   computed: {}
 };

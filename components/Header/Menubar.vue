@@ -9,11 +9,11 @@
             </a>
           </div>
           <div class="col-lg col-sm col-md col-6 flex-grow-0">
-            <div class="category-wrap dropdown d-inline-block float-md-right">
+            <div class="category-wrap dropdown show d-inline-block float-md-right">
               <button
                 type="button"
                 class="btn dropdown-toggle"
-                data-toggle="dropdown"
+                data-toggle="dropdown show"
                 aria-expanded="false"
               >
                 <i class="fa fa-bars"></i> Kategori
@@ -51,8 +51,8 @@
                 </a>
                 <span class="badge badge-pill badge-danger notify">{{totalCart}}</span>
               </div>
-              <div class="widget-header">
-                <a href="#" data-toggle="dropdown" aria-expanded="false">
+              <div class="widget-header dropdown">
+                <a href="#" @click="show" data-toggle="dropdown" aria-expanded="false">
                   <div class="text">
                     <div class="icontext">
                       <div class="icon">
@@ -68,6 +68,16 @@
                     </div>
                   </div>
                 </a>
+                <div
+                  :class="modal"
+                  x-placement="bottom-end"
+                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-65px, 46px, 0px);"
+                >
+                  <a class="dropdown-item" href="#">Profile setting</a>
+                  <a class="dropdown-item" href="#">My orders</a>
+                  <hr class="dropdown-divider" />
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
               </div>
             </div>
             <!-- widgets-wrap.// -->
@@ -84,12 +94,26 @@
 
 <script>
 export default {
+  data() {
+    return {
+      modal: {
+        "dropdown-menu": true,
+        "dropdown-menu-right": true,
+        show: false
+      }
+    };
+  },
   mounted() {
     this.$store.dispatch("GET_CARTS");
   },
   computed: {
     totalCart() {
       return this.$store.getters.GET_CARTS.length;
+    }
+  },
+  methods: {
+    show() {
+      this.modal.show = !this.modal.show;
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <Shipping></Shipping>
+    <Shipping :carts="cartList"></Shipping>
     <Footer></Footer>
   </div>
 </template>
@@ -15,6 +15,16 @@ export default {
     Shipping,
     Footer,
     Header
+  },
+  data() {
+    return {
+      cartList: [],
+      price: 0,
+      test: []
+    };
+  },
+  mounted() {
+    this.cartList = this.$store.getters.GET_CARTS_BY_GROUP_QTY;
   }
 };
 </script>

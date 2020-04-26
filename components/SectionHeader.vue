@@ -8,7 +8,10 @@
               <li class="has-submenu" v-if="groupSidebar.data.length > 1">
                 <a href>{{groupSidebar.group}}</a>
                 <ul class="submenu">
-                  <li v-for="childMenu in groupSidebar.data" :key="childMenu.name">
+                  <li
+                    v-for="(childMenu, indexZ) in groupSidebar.data"
+                    :key="index.toString() + indexZ.toString()"
+                  >
                     <a href="#">{{childMenu.name}}</a>
                   </li>
                 </ul>

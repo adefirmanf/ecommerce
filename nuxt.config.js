@@ -57,7 +57,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  plugins: ['~/plugins/lazyLoad'],
+  plugins: ['~/plugins/lazyLoad', '~/plugins/modal'],
   /*
   ** Build configuration
   */
