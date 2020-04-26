@@ -20,7 +20,7 @@
             <a
               href="#"
               class="img-wrap custom-padding"
-              v-lazy-container="{selector : 'img', loading: '/lazy-load.png'}"
+              v-lazy-container="{selector : 'img', loading: '~/assets/img/lazy-load.png'}"
               v-on:click.prevent
             >
               <img :data-src="list.img[0]" />
@@ -39,7 +39,7 @@
         <div class="col-md-2" v-for="(data, index) in totalLoadedImg" :key="index">
           <div href="#" class="card card-product-grid">
             <a href="#" class="img-wrap custom-padding">
-              <img src="/lazy-load.png" />
+              <img src="~/assets/img/lazy-load.png" />
             </a>
           </div>
         </div>
