@@ -1,18 +1,18 @@
 <template>
   <section class="section-main bg padding-y margin-y">
-    <div class="card">
+    <div class="card" v-if="Object.keys(product).length > 1">
       <div class="row no-gutters">
         <aside class="col-md-6">
           <article class="gallery-wrap gallery-padding">
             <div class="img-big-wrap">
               <a href="#">
-                <img :src="product.img" />
+                <img :src="product.img[0].full" />
               </a>
             </div>
             <!-- img-big-wrap.// -->
-            <div class="thumbs-wrap" v-for="(img, index) in product.img" :key="index">
-              <a href="#" class="item-thumb">
-                <img :src="img" />
+            <div class="thumbs-wrap">
+              <a href="#" class="item-thumb" v-for="(img, index) in product.img" :key="index">
+                <img :src="img.thumbnail" />
               </a>
             </div>
             <!-- thumbs-wrap.// -->
@@ -54,18 +54,7 @@
               <var class="price h4">Rp.{{parseInt(product.price).toLocaleString()}}</var>
             </div>
 
-            <p>Virgil Abloh’s Off-White is a streetwear-inspired collection that continues to break away from the conventions of mainstream fashion. Made in Italy, these black and brown Odsy-1000 low-top sneakers.</p>
-
-            <dl class="row">
-              <dt class="col-sm-3">Model#</dt>
-              <dd class="col-sm-9">Odsy-1000</dd>
-
-              <dt class="col-sm-3">Color</dt>
-              <dd class="col-sm-9">Brown</dd>
-
-              <dt class="col-sm-3">Delivery</dt>
-              <dd class="col-sm-9">Russia, USA, and Europe</dd>
-            </dl>
+            <p v-html="renderDescription(product.description)" />
 
             <hr />
             <div class="form-row">
@@ -113,9 +102,10 @@
                           <img src="~/assets/img/blibli.png" class="img-fluid" />
                         </div>
                         <div class="col-md-9">
-                          Castle Kaos Raglan Polos Tangan Pendek Pria
-                          <div class="price">Rp.22,750</div>
+                          {{product.name}}
+                          <div class="price">Rp.{{parseInt(product.price).toLocaleString()}}</div>
                         </div>
+                        <div class="col-md-3"></div>
                       </div>
                     </div>
                   </div>
@@ -127,9 +117,12 @@
                         <div class="col-md-1">
                           <img src="~/assets/img/shopee.png" class="img-fluid" />
                         </div>
-                        <div class="col-md-9">
-                          Castle Kaos Raglan Polos Tangan Pendek Pria
-                          <div class="price">Rp.22,750</div>
+                        <div class="col-md-9" v-if="similiarProduct.length > 1">
+                          {{similiarProduct[0].name}}
+                          <div
+                            class="price"
+                            v-if="similiarProduct.length > 1"
+                          >Rp.{{parseInt(similiarProduct[0].price).toLocaleString()}}</div>
                         </div>
                       </div>
                     </div>
@@ -139,8 +132,8 @@
               <!-- col.// -->
             </div>
             <!-- row.// -->
-            <a href="cart" @click="addToCart(product)" class="btn btn-primary">Buy now</a>
-            <button @click="addToCart(product)" class="btn btn-outline-primary">
+            <a href="/cart" @click="addToCart(product)" class="btn btn-primary">Buy now</a>
+            <button @click.prevent="addToCart(product)" class="btn btn-outline-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
             </button>
@@ -160,11 +153,18 @@ export default {
     product: {
       type: Object,
       required: true
+    },
+    similiarProduct: {
+      type: Array,
+      required: true
     }
   },
   methods: {
     addToCart(data) {
       this.$emit("addToCart", data);
+    },
+    renderDescription(data) {
+      return data;
     }
   }
 };

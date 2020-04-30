@@ -34,7 +34,10 @@ export default {
     };
   },
   async mounted() {
-    await this.$store.dispatch("GET_DATA_PRODUCTS");
+    await this.$store.dispatch("GET_DATA_PRODUCTS", {
+      search: "kaos",
+      merchant: "blibli"
+    });
     this.loaded = true;
   },
   computed: {
@@ -43,10 +46,10 @@ export default {
     }
   },
   methods: {
-    setProduct(data) {
+    async setProduct(data) {
       this.$store.commit("storeProduct", data);
       this.$router.push({
-        path: "/product-detail"
+        path: `/product/${data.merchant.name}_${data.merchant.productId}_${data.merchant.sku}/`
       });
     }
   }

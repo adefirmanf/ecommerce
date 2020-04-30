@@ -16,9 +16,12 @@
           :key="list.href"
           @click="selectProduct(list)"
         >
-          <div href="#" class="card card-product-grid">
+          <div
+            :href="'product/'+list.merchant.name+'_'+list.merchant.productId+'_'+list.merchant.sku"
+            class="card card-product-grid"
+          >
             <a
-              href="#"
+              :href="'product/'+list.merchant.name+'_'+list.merchant.productId+'_'+list.merchant.sku"
               class="img-wrap custom-padding"
               v-lazy-container="{selector : 'img', loading: 'lazy-load.png'}"
               v-on:click.prevent
@@ -26,8 +29,31 @@
               <img :data-src="list.img[0]" />
             </a>
             <figcaption class="info-wrap">
-              <a href="#" class="title">{{list.name}}</a>
+              <a
+                :href="'product/'+list.merchant.name+'_'+list.merchant.productId+'_'+list.merchant.sku"
+                class="title"
+              >{{list.name}}</a>
               <div class="price mt-1">Rp.{{list.price.toLocaleString()}}</div>
+
+              <img src="~/assets/img/blibli.png" class="img-xs" />
+              <br />
+              <ul class="rating-stars">
+                <li :style="{'width': 20*list.review.rating+'%'}" class="stars-active">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </li>
+                <li>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </li>
+              </ul>
+              <small class="text-muted">{{list.review.count}}</small>
               <!-- price-wrap.// -->
             </figcaption>
           </div>
@@ -64,7 +90,9 @@ export default {
   },
   data() {
     return {
-      totalLoadedImg: 12
+      totalLoadedImg: 12,
+      blibliImg: "~/assets/img/blibli.png",
+      shopeeImg: "~/assets/img/shopee.png"
     };
   },
   methods: {
@@ -78,5 +106,8 @@ export default {
 .img-wrap.custom-padding {
   padding: 4px;
   background-color: #f8f9fa;
+}
+.img-xs {
+  height: auto !important;
 }
 </style>
