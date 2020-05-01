@@ -42,14 +42,13 @@ export default {
 
     //And re-assign the this.product
     this.product = this.$store.getters.GET_PRODUCT_BY_ID;
-
-    await this.$store.dispatch("GET_SIMILIAR_PRODUCT", {
-      search: this.product.name,
-      merchant: "shopee"
-    });
-
+    try {
+      await this.$store.dispatch("GET_DATA_PRODUCTS", {
+        search: this.product.name,
+        merchant: "shopee"
+      });
+    } catch (err) {}
     this.similiarProduct = this.$store.getters.GET_SIMILIAR_PRODUCT;
-    console.log(this.similiarProduct);
   },
   async mounted() {},
   methods: {

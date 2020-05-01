@@ -1,6 +1,6 @@
 <template>
   <div class="always-on-top">
-    <Menubar></Menubar>
+    <Menubar :totalCarts="totalCarts" @searchProduct="searchProduct"></Menubar>
     <!-- <Navbar></Navbar> -->
   </div>
 </template>
@@ -13,6 +13,24 @@ export default {
   components: {
     Menubar,
     Navbar
+  },
+  data() {
+    return {
+      products: [],
+      totalCarts: 0
+    };
+  },
+  mounted() {
+    this.$store.dispatch("GET_CARTS");
+    this.totalCarts = this.$store.getters.GET_CARTS.length;
+  },
+  methods: {
+    async searchProduct(data) {
+      this.$router.push({
+        path: "product",
+        query: { search: data }
+      });
+    }
   }
 };
 </script>

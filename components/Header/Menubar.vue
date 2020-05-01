@@ -30,16 +30,19 @@
             <!-- category-wrap.// -->
           </div>
           <div class="col-lg-4 col-sm-12">
-            <form action="#" class="search">
-              <div class="input-group w-100">
-                <input type="text" class="form-control" placeholder="Search" />
-                <div class="input-group-append">
-                  <button class="btn btn-light" type="submit">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </div>
+            <div class="input-group w-100">
+              <input
+                type="text"
+                class="form-control"
+                :placeholder="'Cari ' + placeholder"
+                v-model="product"
+              />
+              <div class="input-group-append">
+                <button @click="search()" class="btn btn-light" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
               </div>
-            </form>
+            </div>
             <!-- search-wrap .end// -->
           </div>
           <!-- col.// -->
@@ -49,7 +52,7 @@
                 <a href="cart" class="icon icon-sm" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-shopping-cart"></i>
                 </a>
-                <span class="badge badge-pill badge-danger notify">{{totalCart}}</span>
+                <span class="badge badge-pill badge-danger notify">{{totalCarts}}</span>
               </div>
               <div class="widget-header dropdown">
                 <a href="#" @click="show" data-toggle="dropdown" aria-expanded="false">
@@ -94,8 +97,16 @@
 
 <script>
 export default {
+  props: {
+    totalCarts: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
+      randomPlaceholder: ["Baju Muslim", "Ransel", "Sandal Pria", "Gaun"],
+      product: "",
       modal: {
         "dropdown-menu": true,
         "dropdown-menu-right": true,
@@ -103,17 +114,23 @@ export default {
       }
     };
   },
-  mounted() {
-    this.$store.dispatch("GET_CARTS");
-  },
+  mounted() {},
   computed: {
-    totalCart() {
-      return this.$store.getters.GET_CARTS.length;
+    placeholder() {
+      return this.randomPlaceholder[
+        Math.floor(Math.random() * this.randomPlaceholder.length)
+      ];
     }
   },
   methods: {
     show() {
       this.modal.show = !this.modal.show;
+    },
+    search() {
+      if (!this.product) {
+        this.product = this.placeholder;
+      }
+      this.$emit("searchProduct", this.product);
     }
   }
 };
