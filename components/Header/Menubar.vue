@@ -52,7 +52,7 @@
                 <a href="cart" class="icon icon-sm" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-shopping-cart"></i>
                 </a>
-                <span class="badge badge-pill badge-danger notify">{{totalCarts}}</span>
+                <span class="badge badge-pill badge-danger notify">{{totalCart}}</span>
               </div>
               <div class="widget-header dropdown">
                 <a href="#" @click="show" data-toggle="dropdown" aria-expanded="false">
@@ -97,12 +97,6 @@
 
 <script>
 export default {
-  props: {
-    totalCarts: {
-      type: Number,
-      required: true
-    }
-  },
   data() {
     return {
       randomPlaceholder: ["Baju Muslim", "Ransel", "Sandal Pria", "Gaun"],
@@ -114,12 +108,17 @@ export default {
       }
     };
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("GET_CARTS");
+  },
   computed: {
     placeholder() {
       return this.randomPlaceholder[
         Math.floor(Math.random() * this.randomPlaceholder.length)
       ];
+    },
+    totalCart() {
+      return this.$store.getters.GET_CARTS.length;
     }
   },
   methods: {

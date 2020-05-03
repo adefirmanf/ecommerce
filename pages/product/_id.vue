@@ -1,7 +1,17 @@
   <template>
   <div>
     <Header></Header>
-    <ProductDetail :product="product" @addToCart="addToCart" :similiarProduct="similiarProduct"></ProductDetail>
+    <ProductDetail
+      :product="product"
+      @addToCart="addToCart"
+      @addToCartRedirect="addToCartRedirect"
+      :similiarProduct="similiarProduct"
+    ></ProductDetail>
+    <modal name="login" height="auto" :scrollable="true" width="30%">
+      <div class="card">
+        <Login></Login>
+      </div>
+    </modal>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -9,12 +19,14 @@
 
 <script>
 import Header from "~/components/Header.vue";
+import Login from "~/components/Login.vue";
 import ProductDetail from "~/components/ProductDetail.vue";
 import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
     Header,
+    Login,
     ProductDetail,
     Footer
   },
@@ -53,6 +65,12 @@ export default {
   async mounted() {},
   methods: {
     addToCart(data) {
+      this.$store.commit("setCarts", data);
+    },
+    addToCartRedirect(data) {
+      if (!this.$store.getters.GET_AUTH_STATUS) {
+        this.$modal.show("login");
+      }
       this.$store.commit("setCarts", data);
     },
     changeMerchant(data) {}
