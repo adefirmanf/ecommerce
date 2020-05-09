@@ -10,9 +10,7 @@ const createStore = () => {
     },
     state: {
       ...Product.state,
-      auth: false,
-      user: {},
-
+      ...User.state,
     },
     getters: {
       ...Product.getters,

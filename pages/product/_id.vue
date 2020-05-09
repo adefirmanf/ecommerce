@@ -8,13 +8,22 @@
       :similiarProduct="similiarProduct"
     ></ProductDetail>
     <Footer></Footer>
-    <ModalWhenNotLoggedIn></ModalWhenNotLoggedIn>
+    <modal name="login" height="auto" width="30%" :scrollable="true">
+      <div class="card">
+        <div class="alert alert-warning" role="alert">You need login before purchasing from our site</div>
+        <Login @okLogin="okLogin"></Login>
+        <div class="card-footer">
+          <a href>No, thanks. I will purchase from original website</a>
+        </div>
+      </div>
+    </modal>
   </div>
   <!-- section-header.// -->
 </template>
 
 <script>
 import Header from "~/components/Header.vue";
+import Login from "~/components/Login.vue";
 import ModalWhenNotLoggedIn from "~/components/ModalWhenNotLoggedIn.vue";
 import ProductDetail from "~/components/ProductDetail.vue";
 import Footer from "~/components/Footer.vue";
@@ -22,6 +31,7 @@ import Footer from "~/components/Footer.vue";
 export default {
   components: {
     Header,
+    Login,
     ModalWhenNotLoggedIn,
     ProductDetail,
     Footer
@@ -68,8 +78,13 @@ export default {
         this.$modal.show("login");
       }
       this.$store.commit("setCarts", data);
+      this.$router.push("../../cart");
     },
-    changeMerchant(data) {}
+    changeMerchant(data) {},
+    okLogin() {
+      this.$modal.hide("login");
+      this.$router.push("../../cart");
+    }
   }
 };
 </script>

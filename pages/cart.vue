@@ -19,10 +19,13 @@ export default {
   },
   data() {
     return {
-      cartList: [],
+      cartList: {},
       price: 0,
       test: []
     };
+  },
+  async created() {
+    await this.$store.dispatch("GET_CARTS");
   },
   mounted() {
     this.cartList = this.$store.getters.GET_CARTS_BY_GROUP_QTY;

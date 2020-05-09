@@ -62,25 +62,11 @@
                         <i class="icon-sm fa fa-user"></i>
                       </div>
                       <div class="text">
-                        <small class="text-muted">Sign in | Join</small>
-                        <div>
-                          My account
-                          <i class="fa fa-caret-down"></i>
-                        </div>
+                        <div v-if="email">{{email}}</div>
                       </div>
                     </div>
                   </div>
                 </a>
-                <div
-                  :class="modal"
-                  x-placement="bottom-end"
-                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-65px, 46px, 0px);"
-                >
-                  <a class="dropdown-item" href="#">Profile setting</a>
-                  <a class="dropdown-item" href="#">My orders</a>
-                  <hr class="dropdown-divider" />
-                  <a class="dropdown-item" href="#">Log out</a>
-                </div>
               </div>
             </div>
             <!-- widgets-wrap.// -->
@@ -108,9 +94,11 @@ export default {
       }
     };
   },
-  mounted() {
-    this.$store.dispatch("GET_CARTS");
+  async created() {
+    await this.$store.dispatch("GET_AUTH_AND_USER");
+    await this.$store.dispatch("GET_CARTS");
   },
+  async mounted() {},
   computed: {
     placeholder() {
       return this.randomPlaceholder[
@@ -119,6 +107,10 @@ export default {
     },
     totalCart() {
       return this.$store.getters.GET_CARTS.length;
+    },
+    email() {
+      const user = this.$store.getters.GET_USER.profile;
+      return user.email || "Guest";
     }
   },
   methods: {

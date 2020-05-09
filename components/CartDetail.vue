@@ -81,7 +81,7 @@
           <!-- card .// -->
           <div class="card">
             <div class="card-body">
-              <dl class="dlist-align">
+              <dl class="dlist-align" v-if="price">
                 <dt>Total price:</dt>
                 <dd class="text-right price">Rp.{{price.toLocaleString()}}</dd>
               </dl>
@@ -97,7 +97,7 @@
               </dl>
               <hr />
               <p class="text-center mb-3">
-                <a href="/shipping" class="btn btn-primary btn-block">Process to Checkout</a>
+                <a href="../../shipping" class="btn btn-primary btn-block">Process to Checkout</a>
               </p>
             </div>
             <!-- card-body.// -->
@@ -113,7 +113,7 @@ export default {
   name: "HomeItems",
   props: {
     carts: {
-      type: Array,
+      type: Object,
       required: true
     },
     price: {

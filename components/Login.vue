@@ -51,20 +51,36 @@ export default {
     return {};
   },
   methods: {
-    signInWithGoogle() {
-      firebase
-        .auth()
-        .signInWithPopup(googleProvider)
-        .then(results => {
-          console.log(results);
-        });
-    },
     signInWithFacebook() {
       firebase
         .auth()
         .signInWithPopup(facebookProvider)
         .then(results => {
           console.log(results);
+        })
+        .catch(err => {
+          if (err.code == "auth/account-exists-with-different-credential") {
+            alert(
+              "Handle error login when account already signed-in with different provider"
+            );
+          }
+        });
+    },
+    signInWithGoogle() {
+      firebase
+        .auth()
+        .signInWithPopup(googleProvider)
+        .then(results => {
+          this.$store.dispatch("AUTHENTICATION", results);
+          this.$emit("okLogin", results);
+        })
+        .catch(err => {
+          console.log(err);
+          firebase.auth
+            .signInWithPopup(err.credential.providerId)
+            .then(results => {
+              console.log(results);
+            });
         });
     }
   }

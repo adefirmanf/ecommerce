@@ -76,5 +76,11 @@ export default {
       state.carts.push(data)
       storage.setItem.json(CARTS, state.carts)
     },
+    initializeCarts(state, data) {
+      state.carts = data
+    },
+    initializeProducts(state, data) {
+      state.detailProduct = data
+    }
   }
 }
