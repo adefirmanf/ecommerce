@@ -74,11 +74,12 @@ export default {
       this.$store.commit("setCarts", data);
     },
     addToCartRedirect(data) {
+      this.$store.commit("setCarts", data);
       if (!this.$store.getters.GET_AUTH_STATUS) {
         this.$modal.show("login");
+      } else {
+        this.$router.push("../../cart");
       }
-      this.$store.commit("setCarts", data);
-      this.$router.push("../../cart");
     },
     changeMerchant(data) {},
     okLogin() {

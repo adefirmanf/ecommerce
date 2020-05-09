@@ -68,6 +68,7 @@
                     <tr>
                       <b>{{item}}</b>
                     </tr>
+
                     <tr class="price">Rp.{{carts[item][0].price.toLocaleString()}}</tr>
                     <tr class="text-muted">{{carts[item].length}} item</tr>
                   </table>
@@ -84,7 +85,7 @@
             <div class="card-footer">
               <table class="block">
                 <td>Subtotal</td>
-                <td class="text-right">Rp.20,000</td>
+                <td class="text-right">{{invokeSubTotal(carts[item])}}</td>
               </table>
             </div>
           </div>
@@ -161,17 +162,14 @@ export default {
   name: "CartDetails",
   props: {
     carts: {
-      type: Array,
-      required: true
-    },
-    price: {
-      type: Number,
+      type: Object,
       required: true
     }
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      subTotal: 0
     };
   },
   methods: {
@@ -179,6 +177,12 @@ export default {
       this.$modal.show("hello-world", {
         scrollable: true
       });
+    },
+    invokeSubTotal(data) {
+      return `Rp.${data
+        .map(a => a.price)
+        .reduce((a, b) => a + b)
+        .toLocaleString()}`;
     }
   }
 };

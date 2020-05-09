@@ -58,18 +58,23 @@ export default {
       storage.setItem.json(data.merchant.productId)
     },
     setDetailProduct(state, data) {
+      let key = data.productId
+      key = "TEMP_PRODUCT"
+      const getTempProduct = storage.getItem.json(key)
       const detailProduct = {
-        ...storage.getItem.json(data.productId),
+        ...getTempProduct,
         ...data
       }
-      storage.setItem.json(data.productId, detailProduct)
-      state.detailProduct = storage.getItem.json(data.productId)
+      storage.setItem.json(key, detailProduct)
+      state.detailProduct = storage.getItem.json(key)
     },
     setSimiliarProduct(state, data) {
       state.similiarProduct = data
     },
     storeProduct(state, data) {
-      storage.setItem.json(data.merchant.productId, data)
+      let key = data.productId
+      key = "TEMP_PRODUCT"
+      storage.setItem.json(key, data)
       state.detailProduct = data
     },
     setCarts(state, data) {
