@@ -7,26 +7,22 @@
       @addToCartRedirect="addToCartRedirect"
       :similiarProduct="similiarProduct"
     ></ProductDetail>
-    <modal name="login" height="auto" :scrollable="true" width="30%">
-      <div class="card">
-        <Login></Login>
-      </div>
-    </modal>
     <Footer></Footer>
+    <ModalWhenNotLoggedIn></ModalWhenNotLoggedIn>
   </div>
   <!-- section-header.// -->
 </template>
 
 <script>
 import Header from "~/components/Header.vue";
-import Login from "~/components/Login.vue";
+import ModalWhenNotLoggedIn from "~/components/ModalWhenNotLoggedIn.vue";
 import ProductDetail from "~/components/ProductDetail.vue";
 import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
     Header,
-    Login,
+    ModalWhenNotLoggedIn,
     ProductDetail,
     Footer
   },

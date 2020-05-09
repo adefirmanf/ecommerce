@@ -49,7 +49,7 @@
           <div class="col-lg-4 col-sm-6 col-12">
             <div class="widgets-wrap float-md-right">
               <div class="widget-header mr-3 dropdown show">
-                <a href="cart" class="icon icon-sm" data-toggle="dropdown" aria-expanded="true">
+                <a href="/cart" class="icon icon-sm" data-toggle="dropdown" aria-expanded="true">
                   <i class="fa fa-shopping-cart"></i>
                 </a>
                 <span class="badge badge-pill badge-danger notify">{{totalCart}}</span>
