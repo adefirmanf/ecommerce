@@ -1,6 +1,6 @@
 <template>
   <div class="always-on-top">
-    <Menubar :totalCarts="totalCarts" @searchProduct="searchProduct"></Menubar>
+    <Menubar @searchProduct="searchProduct"></Menubar>
     <!-- <Navbar></Navbar> -->
   </div>
 </template>
@@ -17,13 +17,10 @@ export default {
   data() {
     return {
       products: [],
-      totalCarts: 0
+      totalCarts: 1
     };
   },
-  mounted() {
-    this.$store.dispatch("GET_CARTS");
-    this.totalCarts = this.$store.getters.GET_CARTS.length;
-  },
+  mounted() {},
   methods: {
     async searchProduct(data) {
       this.$router.push({

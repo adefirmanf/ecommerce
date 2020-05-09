@@ -1,20 +1,28 @@
   <template>
   <div>
     <Header></Header>
-    <ProductDetail :product="product" @addToCart="addToCart" :similiarProduct="similiarProduct"></ProductDetail>
+    <ProductDetail
+      :product="product"
+      @addToCart="addToCart"
+      @addToCartRedirect="addToCartRedirect"
+      :similiarProduct="similiarProduct"
+    ></ProductDetail>
     <Footer></Footer>
+    <ModalWhenNotLoggedIn></ModalWhenNotLoggedIn>
   </div>
   <!-- section-header.// -->
 </template>
 
 <script>
 import Header from "~/components/Header.vue";
+import ModalWhenNotLoggedIn from "~/components/ModalWhenNotLoggedIn.vue";
 import ProductDetail from "~/components/ProductDetail.vue";
 import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
     Header,
+    ModalWhenNotLoggedIn,
     ProductDetail,
     Footer
   },
@@ -53,6 +61,12 @@ export default {
   async mounted() {},
   methods: {
     addToCart(data) {
+      this.$store.commit("setCarts", data);
+    },
+    addToCartRedirect(data) {
+      if (!this.$store.getters.GET_AUTH_STATUS) {
+        this.$modal.show("login");
+      }
       this.$store.commit("setCarts", data);
     },
     changeMerchant(data) {}

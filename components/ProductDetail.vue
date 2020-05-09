@@ -132,7 +132,7 @@
               <!-- col.// -->
             </div>
             <!-- row.// -->
-            <a href="/cart" @click="addToCart(product)" class="btn btn-primary">Buy now</a>
+            <button @click.prevent="addToCartRedirect(product)" class="btn btn-primary">Buy now</button>
             <button @click.prevent="addToCart(product)" class="btn btn-outline-primary">
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
@@ -162,6 +162,9 @@ export default {
   methods: {
     addToCart(data) {
       this.$emit("addToCart", data);
+    },
+    addToCartRedirect(data) {
+      this.$emit("addToCartRedirect", data);
     },
     renderDescription(data) {
       return data;
