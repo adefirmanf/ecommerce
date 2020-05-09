@@ -1,18 +1,20 @@
 <template>
   <div class="always-on-top">
     <Menubar @searchProduct="searchProduct"></Menubar>
-    <!-- <Navbar></Navbar> -->
+    <Notice></Notice>
   </div>
 </template>
 
 <script>
 import Menubar from "~/components/Header/Menubar.vue";
+import Notice from "~/components/Header/Notice.vue";
 import Navbar from "~/components/Header/Navbar.vue";
 
 export default {
   components: {
     Menubar,
-    Navbar
+    Navbar,
+    Notice
   },
   data() {
     return {
