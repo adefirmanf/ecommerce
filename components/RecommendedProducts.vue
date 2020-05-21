@@ -1,9 +1,8 @@
 <template>
-  <section class="section-name padding-y-sm">
+  <section class="section-name padding-y-sm padding-bottom-sm">
     <div class="container">
-      <header class="section-heading">
-        <a href="#" class="btn btn-outline-primary float-right">See all</a>
-        <h3 class="section-title">Recommended Items</h3>
+      <header class="section-heading heading-line">
+        <h3 class="title-section">Recommended Items</h3>
       </header>
       <!-- sect-heading -->
 
@@ -17,28 +16,53 @@
           @click="selectProduct(list)"
         >
           <div
-            :href="'product/'+list.merchant.name+'_'+list.merchant.productId+'_'+list.merchant.sku"
+            :href="
+              'product/' +
+                list.merchant.name +
+                '_' +
+                list.merchant.productId +
+                '_' +
+                list.merchant.sku
+            "
             class="card card-product-grid"
           >
             <a
-              :href="'product/'+list.merchant.name+'_'+list.merchant.productId+'_'+list.merchant.sku"
+              :href="
+                'product/' +
+                  list.merchant.name +
+                  '_' +
+                  list.merchant.productId +
+                  '_' +
+                  list.merchant.sku
+              "
               class="img-wrap custom-padding"
-              v-lazy-container="{selector : 'img', loading: 'lazy-load.png'}"
+              v-lazy-container="{ selector: 'img', loading: 'lazy-load.png' }"
               v-on:click.prevent
             >
               <img :data-src="list.img[0]" />
             </a>
             <figcaption class="info-wrap">
               <a
-                :href="'product/'+list.merchant.name+'_'+list.merchant.productId+'_'+list.merchant.sku"
+                :href="
+                  'product/' +
+                    list.merchant.name +
+                    '_' +
+                    list.merchant.productId +
+                    '_' +
+                    list.merchant.sku
+                "
                 class="title"
-              >{{list.name}}</a>
-              <div class="price mt-1">Rp.{{list.price.toLocaleString()}}</div>
+                >{{ list.name }}</a
+              >
+              <div class="price mt-1">Rp.{{ list.price.toLocaleString() }}</div>
 
               <img src="~/assets/img/blibli.png" class="img-xs" />
               <br />
               <ul class="rating-stars">
-                <li :style="{'width': 20*list.review.rating+'%'}" class="stars-active">
+                <li
+                  :style="{ width: 20 * list.review.rating + '%' }"
+                  class="stars-active"
+                >
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
@@ -53,7 +77,7 @@
                   <i class="fa fa-star"></i>
                 </li>
               </ul>
-              <small class="text-muted">{{list.review.count}}</small>
+              <small class="text-muted">{{ list.review.count }}</small>
               <!-- price-wrap.// -->
             </figcaption>
           </div>
@@ -62,7 +86,11 @@
       <!-- </div> -->
       <!-- Lazy load API !-->
       <div class="row" v-else>
-        <div class="col-md-2" v-for="(data, index) in totalLoadedImg" :key="index">
+        <div
+          class="col-md-2"
+          v-for="(data, index) in totalLoadedImg"
+          :key="index"
+        >
           <div href="#" class="card card-product-grid">
             <a href="#" class="img-wrap custom-padding">
               <img src="~/assets/img/lazy-load.png" />

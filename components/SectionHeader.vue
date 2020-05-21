@@ -1,32 +1,50 @@
 <template>
-  <section class="section-main bg padding-y margin-y">
+  <section class="section-main bg padding-y-sm margin-y">
     <div class="container">
       <div class="row">
         <aside class="col-md-3">
           <nav class="card">
-            <ul class="menu-category" v-for="(groupSidebar, index) in sidebar" :key="index">
+            <ul
+              class="menu-category"
+              v-for="(groupSidebar, index) in sidebar"
+              :key="index"
+            >
               <li class="has-submenu" v-if="groupSidebar.data.length > 1">
-                <a href>{{groupSidebar.group}}</a>
+                <a href>{{ groupSidebar.group }}</a>
                 <ul class="submenu">
                   <li
                     v-for="(childMenu, indexZ) in groupSidebar.data"
                     :key="index.toString() + indexZ.toString()"
                   >
-                    <a href="#">{{childMenu.name}}</a>
+                    <a href="#">{{ childMenu.name }}</a>
                   </li>
                 </ul>
               </li>
               <li v-else>
-                <a href>{{groupSidebar.group}}</a>
+                <a href>{{ groupSidebar.group }}</a>
               </li>
             </ul>
           </nav>
         </aside>
         <!-- col.// -->
         <div class="col-md-9">
-          <article class="banner-wrap">
-            <img src="~/assets/img/rakuten-banner.jpg" class="w-100 h-200 rounded" />
-          </article>
+          <carousel
+            :perPage="1"
+            :autoplay="true"
+            :autoplayTimeout="5000"
+            :loop="true"
+          >
+            <slide>
+              <div class="card">
+                <img src="banner1.jpg" class="card-img " />
+              </div>
+            </slide>
+            <slide>
+              <div class="card">
+                <img src="banner2.jpg" class="card-img " />
+              </div>
+            </slide>
+          </carousel>
         </div>
         <!-- col.// -->
       </div>
@@ -35,10 +53,10 @@
     <!-- container //  -->
   </section>
 </template>
-<style scoped>
-</style>
+<style scoped></style>
 <script>
 export default {
+  components: {},
   data() {
     return {
       sidebar: [

@@ -2,9 +2,63 @@
   <div>
     <Header></Header>
     <SectionHeader></SectionHeader>
-    <SectionSpecial></SectionSpecial>
+    <!-- <SectionSpecial></SectionSpecial> -->
     <SectionMenuBar></SectionMenuBar>
-    <RecommendedProducts :productList="productList" :loaded="loaded" @productSelected="setProduct"></RecommendedProducts>
+    <RecommendedProducts
+      :productList="productList"
+      :loaded="loaded"
+      @productSelected="setProduct"
+    ></RecommendedProducts>
+    <FlashSale></FlashSale>
+
+    <div class="container">
+      <header class="section-heading heading-line">
+        <h3 class="title-section">You'll Want These</h3>
+      </header>
+      <vue-tabs type="pills" active-tab-color="#ff9017">
+        <v-tab title="Fashion Pria">
+          <CategoryProducts
+            :title="title[0]"
+            :productList="productByCategoryList"
+            :loaded="loaded"
+            @productSelected="setProduct"
+          ></CategoryProducts>
+        </v-tab>
+        <v-tab title="Fashion Wanita">
+          <CategoryProducts
+            :title="title[1]"
+            :productList="productByCategoryList"
+            :loaded="loaded"
+            @productSelected="setProduct"
+          ></CategoryProducts>
+        </v-tab>
+        <v-tab title="Tas Wanita">
+          <CategoryProducts
+            :title="title[1]"
+            :productList="productByCategoryList"
+            :loaded="loaded"
+            @productSelected="setProduct"
+          ></CategoryProducts>
+        </v-tab>
+        <v-tab title="Tas Pria">
+          <CategoryProducts
+            :title="title[1]"
+            :productList="productByCategoryList"
+            :loaded="loaded"
+            @productSelected="setProduct"
+          ></CategoryProducts>
+        </v-tab>
+        <v-tab title="Sepatu Wanita">
+          <CategoryProducts
+            :title="title[1]"
+            :productList="productByCategoryList"
+            :loaded="loaded"
+            @productSelected="setProduct"
+          ></CategoryProducts>
+        </v-tab>
+      </vue-tabs>
+    </div>
+    <BrandList></BrandList>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -17,6 +71,9 @@ import SectionHeader from "~/components/SectionHeader.vue";
 import SectionSpecial from "~/components/SectionSpecial.vue";
 import SectionMenuBar from "~/components/SectionMenuBar.vue";
 import RecommendedProducts from "~/components/RecommendedProducts.vue";
+import FlashSale from "~/components/FlashSale.vue";
+import CategoryProducts from "~/components/CategoryProductList.vue";
+import BrandList from "~/components/BrandList.vue";
 import Footer from "~/components/Footer.vue";
 
 export default {
@@ -25,11 +82,15 @@ export default {
     SectionHeader,
     SectionSpecial,
     SectionMenuBar,
+    FlashSale,
     RecommendedProducts,
+    CategoryProducts,
+    BrandList,
     Footer
   },
   data() {
     return {
+      title: ["Fashion Pria", "Fashion Wanita", "Sepatu", "Tas"],
       loaded: false
     };
   },
@@ -43,6 +104,9 @@ export default {
   computed: {
     productList() {
       return this.$store.getters.GET_ALL_PRODUCTS_RECOMMENDED;
+    },
+    productByCategoryList() {
+      return this.$store.getters.GET_ALL_PRODUCTS_CATEGORIES;
     }
   },
   methods: {
@@ -73,5 +137,10 @@ figcaption > a {
   overflow: hidden;
   white-space: nowrap;
 }
+.heading-line {
+  position: relative;
+}
+.vue-tabs .tab-content {
+  padding-left: 0px !important;
+}
 </style>
-
