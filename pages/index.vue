@@ -2,8 +2,9 @@
   <div>
     <Header></Header>
     <SectionHeader></SectionHeader>
-    <!-- <SectionSpecial></SectionSpecial> -->
-    <SectionMenuBar></SectionMenuBar>
+    <PromoList></PromoList>
+
+    <!-- <SectionMenuBar></SectionMenuBar> -->
     <RecommendedProducts
       :productList="productList"
       :loaded="loaded"
@@ -68,7 +69,7 @@
 import { mapGetters } from "vuex";
 import Header from "~/components/Header.vue";
 import SectionHeader from "~/components/SectionHeader.vue";
-import SectionSpecial from "~/components/SectionSpecial.vue";
+import PromoList from "~/components/PromoList.vue";
 import SectionMenuBar from "~/components/SectionMenuBar.vue";
 import RecommendedProducts from "~/components/RecommendedProducts.vue";
 import FlashSale from "~/components/FlashSale.vue";
@@ -80,7 +81,7 @@ export default {
   components: {
     Header,
     SectionHeader,
-    SectionSpecial,
+    PromoList,
     SectionMenuBar,
     FlashSale,
     RecommendedProducts,

@@ -1,5 +1,5 @@
 <template>
-  <section class="section-specials padding-y border-bottom">
+  <section class="section-specials border-bottom">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -29,7 +29,68 @@
           <!-- iconbox // -->
         </div>
         <!-- col // -->
-
+        <div class="row no-gutters items-wrap">
+          <div class="col-md col-6">
+            <figure class="card-product-grid card-sm">
+              <a href="#" class="img-wrap">
+                <img src="~/assets/img/1.jpg" />
+              </a>
+              <div class="text-wrap p-3">
+                <a href="#" class="title">Shirt</a>
+                <span class="badge badge-danger">-20%</span>
+              </div>
+            </figure>
+          </div>
+          <!-- col.// -->
+          <div class="col-md col-6">
+            <figure class="card-product-grid card-sm">
+              <a href="#" class="img-wrap">
+                <img src="~/assets/img/2.jpg" />
+              </a>
+              <div class="text-wrap p-3">
+                <a href="#" class="title">Summer clothes</a>
+                <span class="badge badge-danger">-5%</span>
+              </div>
+            </figure>
+          </div>
+          <!-- col.// -->
+          <div class="col-md col-6">
+            <figure class="card-product-grid card-sm">
+              <a href="#" class="img-wrap">
+                <img src="images/items/5.jpg" />
+              </a>
+              <div class="text-wrap p-3">
+                <a href="#" class="title">Another category</a>
+                <span class="badge badge-danger">-20%</span>
+              </div>
+            </figure>
+          </div>
+          <!-- col.// -->
+          <div class="col-md col-6">
+            <figure class="card-product-grid card-sm">
+              <a href="#" class="img-wrap">
+                <img src="images/items/6.jpg" />
+              </a>
+              <div class="text-wrap p-3">
+                <a href="#" class="title">Home apparel</a>
+                <span class="badge badge-danger">-15%</span>
+              </div>
+            </figure>
+          </div>
+          <!-- col.// -->
+          <div class="col-md col-6">
+            <figure class="card-product-grid card-sm">
+              <a href="#" class="img-wrap">
+                <img src="images/items/7.jpg" />
+              </a>
+              <div class="text-wrap p-3">
+                <a href="#" class="title text-truncate">Smart watches</a>
+                <span class="badge badge-danger">-10%</span>
+              </div>
+            </figure>
+          </div>
+          <!-- col.// -->
+        </div>
         <!-- col // -->
       </div>
       <!-- row.// -->
