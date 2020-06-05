@@ -9,19 +9,24 @@
           <div class="card shipping-card">
             <div class="card-body">
               <h6 class="card-title" small>Shipping Address</h6>
-              <table>
+              <a href="#" v-if="addressEdit" @click.prevent="shippingAddress()">
+                <div class="box box-dashed">
+                  <h6 class="text-muted text-center">+ Add New Address</h6>
+                </div>
+              </a>
+              <table v-else>
                 <tr>
-                  <b>Home</b>
+                  <b>{{address.label}}</b>
                 </tr>
-                <tr>836 Doctors Drive</tr>
-                <tr>Los Angeles, CA, California</tr>
+                <tr>{{address.name}}</tr>
+                <tr>{{address.phone}}</tr>
+                <tr>{{address.detail}}</tr>
 
-                <tr>310-338-1535</tr>
-                <tr>mwi0f95drce@groupbuff.com</tr>
+                <tr>{{address.city}} {{address.postalCode}}</tr>
               </table>
             </div>
             <div class="card-footer">
-              <a href>Edit</a>
+              <!-- <a href="#" @click="shippingAddress()">Edit</a> -->
             </div>
           </div>
         </aside>
@@ -92,74 +97,58 @@
         </aside>
       </div>
     </div>
-    <modal name="hello-world" height="auto" :scrollable="true" width="30%">
+    <modal name="shipping-address" height="auto" width="40%" :scrollable="true">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title" small>Payment Options</h6>
-          <div
-            class="alert alert-warning"
-            role="alert"
-          >Some payment methods disabled. Please use HTTPS or redirect to our website</div>
-          <a href="#" class="text-dark">
-            <div class="card payment-opt disabled">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-2">
-                    <img src="~/assets/img/visa.png" class="img-xs" />
-                  </div>
-                  <div class="col-md-8">Visa</div>
-                  <div class="col-md-2"></div>
-                </div>
+          <article>
+            <h4 class="card-title">Add New Address</h4>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <small class="form-text text-muted">Label</small>
+                <input class="form-control" type="text" v-model="address.label" />
+                <small class="form-text text-muted">Example : Home, Office, Apartment, Dropship</small>
               </div>
-            </div>
-          </a>
-          <a href="#" class="text-dark">
-            <div class="card payment-opt disabled">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-2">
-                    <img src="~/assets/img/mastercard.png" class="img-xs" />
-                  </div>
-                  <div class="col-md-8">Mastercard</div>
-                </div>
+              <!-- form-group end.// -->
+              <div class="form-group col-md-8">
+                <small class="form-text text-muted">Receiver</small>
+                <input class="form-control" type="text" v-model="address.name" />
+                <small class="form-text text-muted">Example : John Doe</small>
               </div>
-            </div>
-          </a>
-          <a href="#" class="text-dark">
-            <div class="card payment-opt">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-2">
-                    <img src="~/assets/img/paypal.png" class="img-xs" />
-                  </div>
-                  <div class="col-md-8">Paypal</div>
-                </div>
+              <div class="form-group col-md-4">
+                <small class="form-text text-muted">Phone</small>
+                <input class="form-control" type="text" v-model="address.phone" />
+                <small class="form-text text-muted">Example : 081234567890</small>
               </div>
-            </div>
-          </a>
-          <a href="#" class="text-dark">
-            <div class="card payment-opt">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-2">
-                    <i class="fa fa-credit-card fa-lg"></i>
-                  </div>
-                  <div class="col-md-8">Local Bank</div>
-                </div>
+              <div class="form-group col-md-9">
+                <small class="form-text text-muted">City</small>
+                <input class="form-control" type="text" v-model="address.city" />
+                <small class="form-text text-muted">Example : Jakarta</small>
               </div>
+              <div class="form-group col-md-3">
+                <small class="form-text text-muted">Postal Code</small>
+                <input class="form-control" type="text" v-model="address.postalCode" />
+                <small class="form-text text-muted">Example : 15610</small>
+              </div>
+              <div class="form-group col-md-12">
+                <textarea class="form-control" type="textbox" rows="2" v-model="address.detail" />
+              </div>
+              <button class="btn btn-primary float-right btn-block" @click="saveAddress">Add</button>
+              <button class="btn btn-light float-right btn-block">Cancel</button>
             </div>
-          </a>
-        </div>
-        <div class="card-footer">
-          <button class="btn btn-primary btn-block" @click="modalShow">Secure Checkout</button>
+          </article>
         </div>
       </div>
     </modal>
+    <CheckoutModal></CheckoutModal>
   </section>
 </template>
 <script>
+import CheckoutModal from "./CheckoutModal.vue";
 export default {
   name: "CartDetails",
+  components: {
+    CheckoutModal
+  },
   props: {
     carts: {
       type: Object,
@@ -169,7 +158,16 @@ export default {
   data() {
     return {
       showModal: false,
-      subTotal: 0
+      subTotal: 0,
+      addressEdit: true,
+      address: {
+        label: "",
+        name: "",
+        phone: "",
+        city: "",
+        postalCode: "",
+        detail: ""
+      }
     };
   },
   methods: {
@@ -183,6 +181,13 @@ export default {
         .map(a => a.price)
         .reduce((a, b) => a + b)
         .toLocaleString()}`;
+    },
+    shippingAddress() {
+      this.$modal.show("shipping-address");
+    },
+    saveAddress() {
+      this.addressEdit = false;
+      this.$modal.hide("shipping-address");
     }
   }
 };
@@ -212,5 +217,9 @@ export default {
 }
 .img-xs {
   height: auto !important;
+}
+.box-dashed {
+  border: 2px solid #e4e4e4;
+  border-style: dashed;
 }
 </style>;
