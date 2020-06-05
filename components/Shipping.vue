@@ -26,7 +26,7 @@
               </table>
             </div>
             <div class="card-footer">
-              <!-- <a href="#" @click="shippingAddress()">Edit</a> -->
+              <a href="#" v-if="!addressEdit" @click="shippingAddress()">Edit</a>
             </div>
           </div>
         </aside>

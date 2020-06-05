@@ -149,52 +149,59 @@
           <!-- sect-heading -->
 
           <div class="row">
-            <div class="col-md-3" v-for="(product, index) in concatProducts" :key="index">
-              <div class="card card-product-grid">
-                <div class="img-wrap custom-padding">
-                  <img
-                    v-lazy-container="{selector : 'img', loading: 'lazy-load.png'}"
-                    :src="product.img[0]"
-                    :data-src="product.img[0]"
-                  />
-                  <a class="btn-overlay" href="#">
-                    <i class="fa fa-search-plus"></i> Quick view
-                  </a>
-                </div>
-                <!-- img-wrap.// -->
-                <figcaption class="info-wrap">
-                  <a href="#" class="title">{{product.name}}</a>
-                  <div class="price-wrap mt-1">
-                    <div class="price">Rp.{{product.price.toLocaleString()}}</div>
+            <div
+              class="col-md-3"
+              v-for="(product, index) in concatProducts"
+              :key="index"
+              @click="selectProduct(product)"
+            >
+              <a href="#">
+                <div class="card card-product-grid">
+                  <div class="img-wrap custom-padding">
                     <img
-                      v-if="product.merchant.name == 'blibli'"
-                      src="~/assets/img/blibli.png"
-                      class="img-xs"
+                      v-lazy-container="{selector : 'img', loading: 'lazy-load.png'}"
+                      :src="product.img[0]"
+                      :data-src="product.img[0]"
                     />
-                    <img v-else src="~/assets/img/shopee2.png" class="img-xs" />
-                    <br />
-                    <ul class="rating-stars">
-                      <li :style="{'width': 20*product.review.rating+'%'}" class="stars-active">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </li>
-                      <li>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </li>
-                    </ul>
-                    <small class="text-muted">{{product.review.count}}</small>
-                    <!-- <del class="price-old">$1980</del> -->
-                    <!-- price-wrap.// -->
+                    <a class="btn-overlay" href="#">
+                      <i class="fa fa-search-plus"></i> Quick view
+                    </a>
                   </div>
-                </figcaption>
-              </div>
+                  <!-- img-wrap.// -->
+                  <figcaption class="info-wrap">
+                    <a href="#" class="title">{{product.name}}</a>
+                    <div class="price-wrap mt-1">
+                      <div class="price">Rp.{{product.price.toLocaleString()}}</div>
+                      <img
+                        v-if="product.merchant.name == 'blibli'"
+                        src="~/assets/img/blibli.png"
+                        class="img-xs"
+                      />
+                      <img v-else src="~/assets/img/shopee2.png" class="img-xs" />
+                      <br />
+                      <ul class="rating-stars">
+                        <li :style="{'width': 20*product.review.rating+'%'}" class="stars-active">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                      <small class="text-muted">{{product.review.count}}</small>
+                      <!-- <del class="price-old">$1980</del> -->
+                      <!-- price-wrap.// -->
+                    </div>
+                  </figcaption>
+                </div>
+              </a>
             </div>
             <!-- col.// -->
 
@@ -262,6 +269,11 @@ export default {
           return "~/assets/img/shopee.png";
           break;
       }
+    }
+  },
+  methods: {
+    selectProduct(data) {
+      this.$emit("productSelected", data);
     }
   }
 };

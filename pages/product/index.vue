@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <ProductListSearch :products="products" :loaded="loaded"></ProductListSearch>
+    <ProductListSearch :products="products" :loaded="loaded" @productSelected="setProduct"></ProductListSearch>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -39,6 +39,14 @@ export default {
     });
     this.loaded = true;
     this.products = this.$store.getters.GET_ALL_PRODUCTS;
+  },
+  methods: {
+    async setProduct(data) {
+      this.$store.commit("storeProduct", data);
+      this.$router.push({
+        path: `/product/${data.merchant.name}_${data.merchant.productId}_${data.merchant.sku}/`
+      });
+    }
   }
 };
 </script>
