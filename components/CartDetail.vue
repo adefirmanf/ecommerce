@@ -97,7 +97,11 @@
               </dl>
               <hr />
               <p class="text-center mb-3">
-                <a href="../../shipping" class="btn btn-primary btn-block">Process to Checkout</a>
+                <a
+                  href="#"
+                  @click.prevent="shipping"
+                  class="btn btn-primary btn-block"
+                >Process to Checkout</a>
               </p>
             </div>
             <!-- card-body.// -->
@@ -121,6 +125,11 @@ export default {
       required: true
     }
   },
-  mounted() {}
+  mounted() {},
+  methods: {
+    shipping() {
+      this.$router.push("shipping");
+    }
+  }
 };
 </script>
