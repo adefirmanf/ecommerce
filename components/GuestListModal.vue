@@ -16,13 +16,15 @@
                       <div class="col-md-10">
                         <table style="width : 175px">
                           <tr style="width : 50%">
-                            <td class="overflow">{{data.name}}</td>
+                            <td class="overflow-list">{{data.name}}</td>
                             <td class="text-right">
                               <span :class="badge(data.label)">{{data.label || 'unverified'}}</span>
                             </td>
                           </tr>
-                          <tr>
-                            <small class="text-muted">{{data.email}}</small>
+                          <tr style="width : 50%">
+                            <td class="overflow-list">
+                              <small class="text-muted">{{data.email}}</small>
+                            </td>
                           </tr>
                         </table>
                       </div>
@@ -125,7 +127,6 @@ export default {
   },
   methods: {
     writeReview() {
-      this.$modal.hide("guest-book");
       this.$modal.show("review");
     },
     cardSelected(val) {
@@ -135,7 +136,7 @@ export default {
       switch (label) {
         case "verified":
           return "badge btn-success";
-        case "":
+        default:
           return "badge badge-light";
       }
     }
@@ -151,11 +152,11 @@ export default {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.overflow {
-  max-width: 0;
+.overflow-list {
+  max-width: 120px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 .selected {
   border-color: red !important;

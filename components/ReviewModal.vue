@@ -19,7 +19,14 @@
             <input name class="form-control" v-model="name" type="text" :disabled="isAuth" />
           </div>
           <div class="form-group">
-            <small class="form-text text-muted">Your email</small>
+            <div class="row">
+              <div class="col-md-8">
+                <small class="form-text text-muted">Your email</small>
+              </div>
+              <div class="col-md-4 pull-right text-right">
+                <span :class="badge">{{isAuth ? 'verified' : 'unverified'}}</span>
+              </div>
+            </div>
             <input name class="form-control" v-model="email" type="text" :disabled="isAuth" />
           </div>
           <div class="form-group">
@@ -60,6 +67,7 @@
 export default {
   data() {
     return {
+      buttonText: "Submit",
       name: "",
       email: "",
       review: "",
@@ -85,27 +93,53 @@ export default {
       return this.$store.getters.GET_AUTH_STATUS;
     },
     validate() {
-      if (this.name == "" || this.review == "" || this.rate == 0) {
+      if (
+        this.name == "" ||
+        this.review == "" ||
+        this.rate == 0 ||
+        this.buttonText == "Loading"
+      ) {
         return true;
       }
       return false;
+    },
+    badge() {
+      if (this.isAuth) {
+        return "badge btn-success ";
+      } else {
+        return "badge badge-light";
+      }
     }
   },
   methods: {
     rateUp(position) {
       this.rate = position + 1;
-      console.log(this.rate);
     },
     async submitReview() {
-      await this.$store.dispatch("ADD_DATA_REVIEW", {
-        name: this.name,
-        email: this.email,
-        review: this.review,
-        image: this.image,
-        label: this.label,
-        rate: this.rate
+      this.buttonText = "Loading";
+      await this.$store
+        .dispatch("ADD_DATA_REVIEW", {
+          name: this.name,
+          email: this.email,
+          review: this.review,
+          image: this.image,
+          label: this.label,
+          rate: this.rate
+        })
+        .then(ok => {
+          if (ok) {
+            this.buttonText = "Done";
+          }
+        });
+      await this.$store.dispatch("FETCH_DATA_REVIEWS").then(ok => {
+        this.$modal.hide("review");
       });
     }
   }
 };
 </script>
+<style scoped>
+.inline {
+  float: left;
+}
+</style>

@@ -116,7 +116,7 @@ export default {
       switch (label) {
         case "verified":
           return "badge btn-success";
-        case "":
+        default:
           return "badge badge-light";
       }
     }

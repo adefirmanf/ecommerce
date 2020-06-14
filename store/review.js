@@ -9,6 +9,7 @@ export default {
   actions: {
     async FETCH_DATA_REVIEWS({ commit }) {
       db.collection("reviews")
+        .orderBy("date", "desc")
         .get()
         .then(res => {
           const data = res.docs.map(n => n.data());
@@ -24,10 +25,10 @@ export default {
           review: payload.review,
           email: payload.email,
           img: payload.image,
-          label: ""
+          label: payload.label
         })
         .then(res => {
-          console.log(res);
+          return true;
         });
     }
   },
