@@ -1,36 +1,22 @@
 <template>
   <div>
     <div class="card-body custom">
-      <vue-tabs
-        class="custom"
-        type="pills"
-        active-tab-color="#ffffff"
-        active-text-color="black"
-      >
+      <vue-tabs class="custom" type="pills" active-tab-color="#ffffff" active-text-color="black">
         <v-tab title="Sign in">
           <article>
             <h4 class="card-title">
-              Sign In <br />
-              <small class="text-muted"> Hello, Welcome back </small>
+              Sign In
+              <br />
+              <small class="text-muted">Hello, Welcome back</small>
             </h4>
             <div class="form-group">
               <small class="form-text text-muted">Username / Email</small>
-              <input
-                name
-                v-model="signin.email"
-                class="form-control"
-                type="text"
-              />
+              <input name v-model="signin.email" class="form-control" type="text" />
             </div>
             <!-- form-group// -->
             <div class="form-group">
               <small class="form-text text-muted">Password</small>
-              <input
-                name
-                v-model="signin.password"
-                class="form-control"
-                type="password"
-              />
+              <input name v-model="signin.password" class="form-control" type="password" />
             </div>
             <!-- form-group// -->
 
@@ -44,65 +30,42 @@
             <div class="form-group"></div>
             <!-- form-group form-check .// -->
             <div class="form-group">
-              <button
-                @click="signInWithEmail"
-                class="btn btn-primary float-right btn-block"
-              >
-                Login
-              </button>
+              <button @click="signInWithEmail" class="btn btn-primary float-right btn-block">Login</button>
             </div>
           </article>
         </v-tab>
         <v-tab title="Sign up">
           <article>
             <h4 class="card-title">
-              Sign Up <br />
-              <small class="text-muted">
-                It's free and only takes a minute.
-              </small>
+              Sign Up
+              <br />
+              <small class="text-muted">It's free and only takes a minute.</small>
             </h4>
             <div class="form-group">
               <small class="form-text text-muted">Email</small>
-              <input
-                name
-                v-model="signup.email"
-                class="form-control"
-                type="text"
-              />
+              <input name v-model="signup.email" class="form-control" type="text" />
             </div>
             <!-- form-group// -->
             <div class="form-group">
               <small class="form-text text-muted">Password</small>
-              <input
-                name
-                v-model="signup.password"
-                class="form-control"
-                type="password"
-              />
+              <input name v-model="signup.password" class="form-control" type="password" />
             </div>
             <div class="form-group">
               <small class="form-text text-muted">Repeat Password</small>
-              <input
-                name
-                v-model="signup.password2nd"
-                class="form-control"
-                type="password"
-              />
+              <input name v-model="signup.password2nd" class="form-control" type="password" />
             </div>
             <div class="form-group text-center">
-              <span class="padding-y-sm text-center text-muted"
-                >By clicking "Create your account" below, you agree to our
-                <a href="">terms of service</a> and
-                <a href=""> privacy policy</a></span
-              >
+              <span class="padding-y-sm text-center text-muted">
+                By clicking "Create your account" below, you agree to our
+                <a href>terms of service</a> and
+                <a href>privacy policy</a>
+              </span>
             </div>
             <div class="form-group">
               <button
                 @click="signUpWithEmail"
                 class="btn btn-primary float-right btn-block"
-              >
-                Create your account
-              </button>
+              >Create your account</button>
             </div>
           </article>
         </v-tab>
@@ -114,21 +77,13 @@
           <span class="text-muted">Or Sign In / Up using</span>
         </div>
         <div class="col-md-6 padding-y-sm">
-          <a
-            href="#"
-            @click.prevent="signInWithFacebook"
-            class="btn btn-light btn-block mb-4"
-          >
+          <a href="#" @click.prevent="signInWithFacebook" class="btn btn-light btn-block mb-4">
             <i class="fab fa-facebook-f" v-if="socialButton"></i> &nbsp;
             Facebook
           </a>
         </div>
         <div class="col-md-6 padding-y-sm">
-          <a
-            href="#"
-            @click.prevent="signInWithGoogle"
-            class="btn btn-light btn-block mb-4"
-          >
+          <a href="#" @click.prevent="signInWithGoogle" class="btn btn-light btn-block mb-4">
             <i class="fab fa-google" v-if="socialButton"></i> &nbsp; Google
           </a>
         </div>
@@ -140,9 +95,9 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import config from "../google-credentials";
+// import config from "../google-credentials";
 
-firebase.initializeApp(config.config);
+// firebase.initializeApp(config.config);
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 export default {

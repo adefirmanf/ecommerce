@@ -5,11 +5,7 @@
     <PromoList></PromoList>
 
     <!-- <SectionMenuBar></SectionMenuBar> -->
-    <RecommendedProducts
-      :productList="productList"
-      :loaded="loaded"
-      @productSelected="setProduct"
-    ></RecommendedProducts>
+    <RecommendedProducts :productList="productList" :loaded="loaded" @productSelected="setProduct"></RecommendedProducts>
     <FlashSale></FlashSale>
 
     <div class="container">
@@ -60,6 +56,7 @@
       </vue-tabs>
     </div>
     <BrandList></BrandList>
+    <GuestBook></GuestBook>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -76,6 +73,7 @@ import FlashSale from "~/components/FlashSale.vue";
 import CategoryProducts from "~/components/CategoryProductList.vue";
 import BrandList from "~/components/BrandList.vue";
 import Footer from "~/components/Footer.vue";
+import GuestBook from "~/components/GuestBook.vue";
 
 export default {
   components: {
@@ -87,7 +85,8 @@ export default {
     RecommendedProducts,
     CategoryProducts,
     BrandList,
-    Footer
+    Footer,
+    GuestBook
   },
   data() {
     return {
