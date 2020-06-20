@@ -6,13 +6,13 @@
           <article class="gallery-wrap gallery-padding">
             <div class="img-big-wrap">
               <a href="#">
-                <img :src="product.img[0].full" />
+                <img :src="product.img[0].full || product.img[0]" />
               </a>
             </div>
             <!-- img-big-wrap.// -->
             <div class="thumbs-wrap">
               <a href="#" class="item-thumb" v-for="(img, index) in product.img" :key="index">
-                <img :src="img.thumbnail" />
+                <img :src="img.thumbnail || img" />
               </a>
             </div>
             <!-- thumbs-wrap.// -->
