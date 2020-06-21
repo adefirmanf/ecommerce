@@ -20,6 +20,7 @@
     "axios": "^0.19.2",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "dotenv": "^8.2.0",
+    "epic-spinners": "^1.1.0",
     "firebase": "^7.14.2",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0",

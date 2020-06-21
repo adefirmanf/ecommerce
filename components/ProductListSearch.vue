@@ -21,14 +21,24 @@
               <div class="filter-content collapse show" id="collapse_2" style>
                 <div class="card-body">
                   <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked class="custom-control-input" />
+                    <input
+                      type="checkbox"
+                      checked
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label">
                       Blibli
-                      <b class="badge badge-pill badge-light float-right">120</b>
+                      <b class="badge badge-pill badge-light float-right"
+                        >120</b
+                      >
                     </div>
                   </label>
                   <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked class="custom-control-input" />
+                    <input
+                      type="checkbox"
+                      checked
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label">
                       Shoppe
                       <b class="badge badge-pill badge-light float-right">15</b>
@@ -54,15 +64,29 @@
               </header>
               <div class="filter-content collapse show" id="collapse_3" style>
                 <div class="card-body">
-                  <input type="range" class="custom-range" min="0" max="100" name />
+                  <input
+                    type="range"
+                    class="custom-range"
+                    min="0"
+                    max="100"
+                    name
+                  />
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label>Min</label>
-                      <input class="form-control" placeholder="$0" type="number" />
+                      <input
+                        class="form-control"
+                        placeholder="$0"
+                        type="number"
+                      />
                     </div>
                     <div class="form-group text-right col-md-6">
                       <label>Max</label>
-                      <input class="form-control" placeholder="$1,0000" type="number" />
+                      <input
+                        class="form-control"
+                        placeholder="$1,0000"
+                        type="number"
+                      />
                     </div>
                   </div>
                   <!-- form-row.// -->
@@ -87,14 +111,22 @@
               <div class="filter-content collapse show" id="collapse_4" style>
                 <div class="card-body">
                   <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked class="custom-control-input" />
+                    <input
+                      type="checkbox"
+                      checked
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label text-warning">
                       <i class="fa fa-star"></i>
                       3 Keatas
                     </div>
                   </label>
                   <label class="custom-control custom-checkbox">
-                    <input type="checkbox" checked class="custom-control-input" />
+                    <input
+                      type="checkbox"
+                      checked
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label text-warning">
                       <i class="fa fa-star"></i>
                       4 Keatas
@@ -115,8 +147,8 @@
           <header class="border-bottom mb-4 pb-4">
             <div class="form-inline">
               <span class="mr-md-auto">
-                {{concatProducts.length}} Items found for
-                <b>{{this.$route.query.search}}</b>
+                {{ concatProducts.length }} Items found for
+                <b>{{ this.$route.query.search }}</b>
               </span>
               <select class="mr-2 form-control">
                 <option>Latest items</option>
@@ -159,7 +191,10 @@
                 <div class="card card-product-grid">
                   <div class="img-wrap custom-padding">
                     <img
-                      v-lazy-container="{selector : 'img', loading: 'lazy-load.png'}"
+                      v-lazy-container="{
+                        selector: 'img',
+                        loading: 'lazy-load.png'
+                      }"
                       :src="product.img[0]"
                       :data-src="product.img[0]"
                     />
@@ -169,18 +204,27 @@
                   </div>
                   <!-- img-wrap.// -->
                   <figcaption class="info-wrap">
-                    <a href="#" class="title">{{product.name}}</a>
+                    <a href="#" class="title">{{ product.name }}</a>
                     <div class="price-wrap mt-1">
-                      <div class="price">Rp.{{product.price.toLocaleString()}}</div>
+                      <div class="price">
+                        Rp.{{ product.price.toLocaleString() }}
+                      </div>
                       <img
                         v-if="product.merchant.name == 'blibli'"
                         src="~/assets/img/blibli.png"
                         class="img-xs"
                       />
-                      <img v-else src="~/assets/img/shopee2.png" class="img-xs" />
+                      <img
+                        v-else
+                        src="~/assets/img/shopee2.png"
+                        class="img-xs"
+                      />
                       <br />
                       <ul class="rating-stars">
-                        <li :style="{'width': 20*product.review.rating+'%'}" class="stars-active">
+                        <li
+                          :style="{ width: 20 * product.review.rating + '%' }"
+                          class="stars-active"
+                        >
                           <i class="fa fa-star"></i>
                           <i class="fa fa-star"></i>
                           <i class="fa fa-star"></i>
@@ -195,7 +239,9 @@
                           <i class="fa fa-star"></i>
                         </li>
                       </ul>
-                      <small class="text-muted">{{product.review.count}}</small>
+                      <small class="text-muted">{{
+                        product.review.count
+                      }}</small>
                       <!-- <del class="price-old">$1980</del> -->
                       <!-- price-wrap.// -->
                     </div>
@@ -224,19 +270,24 @@
                 <a class="page-link" href="#">3</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+                <a @click="testModal" class="page-link" href="#">Next</a>
               </li>
             </ul>
           </nav>
         </main>
         <!-- col.// -->
       </div>
+      <Loading></Loading>
     </div>
     <!-- container .//  -->
   </section>
 </template>
 <script>
+import Loading from "./Loading";
 export default {
+  components: {
+    Loading
+  },
   props: {
     products: {
       type: Array,
@@ -253,9 +304,15 @@ export default {
       listProduct: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
   },
+  created() {
+    this.$nextTick(() => {
+      this.$modal.show("loading");
+    });
+  },
   computed: {
     concatProducts() {
       if (this.loaded) {
+        this.$modal.hide("loading");
         return this.products[0].data.concat(this.products[1].data);
       } else {
         return [];
@@ -274,6 +331,9 @@ export default {
   methods: {
     selectProduct(data) {
       this.$emit("productSelected", data);
+    },
+    testModal() {
+      this.$modal.show("test");
     }
   }
 };

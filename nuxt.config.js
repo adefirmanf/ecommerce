@@ -66,7 +66,8 @@ module.exports = {
     { src: "~/plugins/lazyLoad" },
     { src: "~/plugins/modal" },
     { src: "~/plugins/carousel", ssr: false },
-    { src: "~/plugins/vuetabs" }
+    { src: "~/plugins/vuetabs" },
+    { src: "~/plugins/spinner" }
   ],
   /*
    ** Build configuration

@@ -11,7 +11,12 @@
             </div>
             <!-- img-big-wrap.// -->
             <div class="thumbs-wrap">
-              <a href="#" class="item-thumb" v-for="(img, index) in product.img" :key="index">
+              <a
+                href="#"
+                class="item-thumb"
+                v-for="(img, index) in product.img"
+                :key="index"
+              >
                 <img :src="img.thumbnail || img" />
               </a>
             </div>
@@ -21,7 +26,7 @@
         </aside>
         <main class="col-md-6 border-left">
           <article class="content-body">
-            <h4 class="title">{{product.name}}</h4>
+            <h4 class="title">{{ product.name }}</h4>
 
             <div class="rating-wrap my-3">
               <ul class="rating-stars">
@@ -51,7 +56,9 @@
             <!-- rating-wrap.// -->
 
             <div class="mb-3">
-              <var class="price h4">Rp.{{parseInt(product.price).toLocaleString()}}</var>
+              <var class="price h4"
+                >Rp.{{ parseInt(product.price).toLocaleString() }}</var
+              >
             </div>
 
             <p v-html="renderDescription(product.description)" />
@@ -62,11 +69,23 @@
                 <label>Quantity</label>
                 <div class="input-group mb-3 input-spinner">
                   <div class="input-group-prepend">
-                    <button class="btn btn-light" type="button" id="button-plus">+</button>
+                    <button
+                      class="btn btn-light"
+                      type="button"
+                      id="button-plus"
+                    >
+                      +
+                    </button>
                   </div>
                   <input type="text" class="form-control" value="1" />
                   <div class="input-group-append">
-                    <button class="btn btn-light" type="button" id="button-minus">−</button>
+                    <button
+                      class="btn btn-light"
+                      type="button"
+                      id="button-minus"
+                    >
+                      −
+                    </button>
                   </div>
                 </div>
               </div>
@@ -74,18 +93,37 @@
               <div class="form-group col-md">
                 <label>Select size</label>
                 <div class="mt-1">
-                  <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="select_size" checked class="custom-control-input" />
+                  <label
+                    class="custom-control custom-radio custom-control-inline"
+                  >
+                    <input
+                      type="radio"
+                      name="select_size"
+                      checked
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label">Small</div>
                   </label>
 
-                  <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="select_size" class="custom-control-input" />
+                  <label
+                    class="custom-control custom-radio custom-control-inline"
+                  >
+                    <input
+                      type="radio"
+                      name="select_size"
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label">Medium</div>
                   </label>
 
-                  <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="select_size" class="custom-control-input" />
+                  <label
+                    class="custom-control custom-radio custom-control-inline"
+                  >
+                    <input
+                      type="radio"
+                      name="select_size"
+                      class="custom-control-input"
+                    />
                     <div class="custom-control-label">Large</div>
                   </label>
                 </div>
@@ -99,11 +137,16 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1">
-                          <img src="~/assets/img/blibli.png" class="img-fluid" />
+                          <img
+                            src="~/assets/img/blibli.png"
+                            class="img-fluid"
+                          />
                         </div>
                         <div class="col-md-9">
-                          {{product.name}}
-                          <div class="price">Rp.{{parseInt(product.price).toLocaleString()}}</div>
+                          {{ product.name }}
+                          <div class="price">
+                            Rp.{{ parseInt(product.price).toLocaleString() }}
+                          </div>
                         </div>
                         <div class="col-md-3"></div>
                       </div>
@@ -115,14 +158,20 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1">
-                          <img src="~/assets/img/shopee.png" class="img-fluid" />
+                          <img
+                            src="~/assets/img/shopee.png"
+                            class="img-fluid"
+                          />
                         </div>
                         <div class="col-md-9" v-if="similiarProduct.length > 1">
-                          {{similiarProduct[0].name}}
-                          <div
-                            class="price"
-                            v-if="similiarProduct.length > 1"
-                          >Rp.{{parseInt(similiarProduct[0].price).toLocaleString()}}</div>
+                          {{ similiarProduct[0].name }}
+                          <div class="price" v-if="similiarProduct.length > 1">
+                            Rp.{{
+                              parseInt(
+                                similiarProduct[0].price
+                              ).toLocaleString()
+                            }}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -132,8 +181,16 @@
               <!-- col.// -->
             </div>
             <!-- row.// -->
-            <button @click.prevent="addToCartRedirect(product)" class="btn btn-primary">Buy now</button>
-            <button @click.prevent="addToCart(product)" class="btn btn-outline-primary">
+            <button
+              @click.prevent="addToCartRedirect(product)"
+              class="btn btn-primary"
+            >
+              Buy now
+            </button>
+            <button
+              @click.prevent="addToCart(product)"
+              class="btn btn-outline-primary"
+            >
               <span class="text">Add to cart</span>
               <i class="fas fa-shopping-cart"></i>
             </button>
@@ -147,6 +204,7 @@
   </section>
 </template>
 <script>
+import Loading from "./Loading";
 export default {
   name: "ProductDetail",
   props: {
@@ -158,6 +216,11 @@ export default {
       type: Array,
       required: true
     }
+  },
+  created() {
+    this.$nextTick(() => {
+      this.$modal.show("loading");
+    });
   },
   methods: {
     addToCart(data) {

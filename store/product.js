@@ -20,6 +20,7 @@ export default {
       }
     },
     async GET_DETAIL_PRODUCT({ commit }, payload) {
+      console.log(payload);
       let { data } = await axios.get(
         `${BASE_URL_API}/products/${payload.merchant.name}/${payload.merchant.productId}/${payload.merchant.sku}`
       );

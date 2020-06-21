@@ -1,7 +1,11 @@
 <template>
   <div>
     <Header></Header>
-    <ProductListSearch :products="products" :loaded="loaded" @productSelected="setProduct"></ProductListSearch>
+    <ProductListSearch
+      :products="products"
+      :loaded="loaded"
+      @productSelected="setProduct"
+    ></ProductListSearch>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
