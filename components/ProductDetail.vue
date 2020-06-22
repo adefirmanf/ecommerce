@@ -206,6 +206,9 @@
 <script>
 import Loading from "./Loading";
 export default {
+  components: {
+    Loading
+  },
   name: "ProductDetail",
   props: {
     product: {
@@ -217,11 +220,8 @@ export default {
       required: true
     }
   },
-  created() {
-    this.$nextTick(() => {
-      this.$modal.show("loading");
-    });
-  },
+  created() {},
+  mounted() {},
   methods: {
     addToCart(data) {
       this.$emit("addToCart", data);

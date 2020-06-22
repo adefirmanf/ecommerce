@@ -68,7 +68,13 @@ export default {
     GET_PRODUCT_BY_ID: state => state.detailProduct,
     GET_CARTS: state => state.carts,
     GET_CARTS_BY_GROUP_QTY: state => _.groupBy(state.carts, "name"),
-    GET_SIMILIAR_PRODUCT: state => state.products[0].data
+    GET_SIMILIAR_PRODUCT: state => {
+      if (state.products.length > 0) {
+        return state.products[0].data;
+      } else {
+        return {};
+      }
+    }
   },
   mutations: {
     setArticle(state, data) {

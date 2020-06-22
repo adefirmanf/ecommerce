@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div>
     <Header></Header>
     <ProductDetail
@@ -6,11 +6,14 @@
       @addToCart="addToCart"
       @addToCartRedirect="addToCartRedirect"
       :similiarProduct="similiarProduct"
+      :loaded="loaded"
     ></ProductDetail>
     <Footer></Footer>
     <modal name="login" height="auto" width="30%" :scrollable="true">
       <div class="card">
-        <div class="alert alert-warning" role="alert">You need login before purchasing from our site</div>
+        <div class="alert alert-warning" role="alert">
+          You need login before purchasing from our site
+        </div>
         <Login @okLogin="okLogin"></Login>
         <div class="card-footer">
           <a href>No, thanks. I will purchase from original website</a>
@@ -38,8 +41,7 @@ export default {
   },
   data() {
     return {
-      product: {},
-      similiarProduct: []
+      loaded: false
     };
   },
   async created() {
@@ -58,15 +60,20 @@ export default {
     //Give the brief of moment to fetch detail product
     await this.$store.dispatch("GET_DETAIL_PRODUCT", payload);
 
-    //And re-assign the this.product
-    this.product = this.$store.getters.GET_PRODUCT_BY_ID;
     try {
       await this.$store.dispatch("GET_DATA_PRODUCTS", {
         search: this.product.name,
         merchant: "shopee"
       });
     } catch (err) {}
-    this.similiarProduct = this.$store.getters.GET_SIMILIAR_PRODUCT;
+  },
+  computed: {
+    product() {
+      return this.$store.getters.GET_PRODUCT_BY_ID;
+    },
+    similiarProduct() {
+      return this.$store.getters.GET_SIMILIAR_PRODUCT;
+    }
   },
   async mounted() {},
   methods: {
@@ -89,5 +96,4 @@ export default {
   }
 };
 </script>
-<style>
-</style>
+<style></style>

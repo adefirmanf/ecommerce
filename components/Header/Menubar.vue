@@ -50,9 +50,14 @@
                 v-model="product"
               />
               <div class="input-group-append">
-                <button @click="search()" class="btn btn-light" type="submit">
+                <a
+                  :href="link"
+                  @click="search()"
+                  class="btn btn-light"
+                  type="submit"
+                >
                   <i class="fa fa-search"></i>
-                </button>
+                </a>
               </div>
             </div>
             <!-- search-wrap .end// -->
@@ -151,6 +156,9 @@ export default {
     email() {
       const user = this.$store.getters.GET_USER.profile;
       return user.email || "Guest";
+    },
+    link() {
+      return `/product?search=${this.product}`;
     }
   },
   methods: {
@@ -164,7 +172,14 @@ export default {
       if (!this.product) {
         this.product = this.placeholder;
       }
-      this.$emit("searchProduct", this.product);
+      this.$router.push(
+        { path: "/product" },
+        {
+          query: {
+            search: this.product
+          }
+        }
+      );
     },
     cart() {
       if (this.isAuth) {
