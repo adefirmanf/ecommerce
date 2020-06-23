@@ -22,7 +22,7 @@ module.exports = {
     baseUrlAPI: BASE_URL_API[BUILD_ENV || "local"],
     routerBase: ROUTER_BASE[BUILD_ENV || "local"]
   },
-  mode: "ssr",
+  mode: "spa",
   router: {
     base: ROUTER_BASE[BUILD_ENV || "local"],
     extendRoutes(routes, resolve) {
