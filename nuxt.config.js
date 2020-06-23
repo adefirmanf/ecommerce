@@ -5,7 +5,7 @@ require("dotenv").config();
  */
 
 const BASE_URL_API = {
-  local: "http://localhost:8080",
+  local: process.env.LOCAL || "http://localhost:8080",
   gh: process.env.GH_BASE_URL_API,
   production: process.env.PROD_BASE_URL_API
 };
@@ -22,7 +22,7 @@ module.exports = {
     baseUrlAPI: BASE_URL_API[BUILD_ENV || "local"],
     routerBase: ROUTER_BASE[BUILD_ENV || "local"]
   },
-  mode: "spa",
+  mode: "ssr",
   router: {
     base: ROUTER_BASE[BUILD_ENV || "local"],
     extendRoutes(routes, resolve) {
