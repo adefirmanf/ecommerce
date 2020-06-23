@@ -18,7 +18,6 @@ export default {
   },
   data() {
     return {
-      cartList: {},
       price: 0,
       test: []
     };
@@ -26,10 +25,10 @@ export default {
   async created() {
     await this.$store.dispatch("GET_CARTS");
   },
-  mounted() {
-    this.cartList = this.$store.getters.GET_CARTS_BY_GROUP_QTY;
-
-    console.log(this.cartList);
+  computed: {
+    cartList() {
+      return this.$store.getters.GET_CARTS_BY_GROUP_QTY;
+    }
   }
 };
 </script>

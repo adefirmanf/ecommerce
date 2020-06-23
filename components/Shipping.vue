@@ -3,9 +3,12 @@
     <div class="container">
       <div class="row">
         <aside class="col-md-8">
-          <div
-            class="alert alert-info"
-          >Cek kembali alamat pengiriman kamu sebelum melanjutkan pesanan. Jika kamu sedang #DiRumahAja dan ingin mengirim paket ke rumah, pastikan alamat rumahmu yang terpilih. Tetap jaga kesehatan dan selamat berbelanja!</div>
+          <div class="alert alert-info">
+            Cek kembali alamat pengiriman kamu sebelum melanjutkan pesanan. Jika
+            kamu sedang #DiRumahAja dan ingin mengirim paket ke rumah, pastikan
+            alamat rumahmu yang terpilih. Tetap jaga kesehatan dan selamat
+            berbelanja!
+          </div>
           <div class="card shipping-card">
             <div class="card-body">
               <h6 class="card-title" small>Shipping Address</h6>
@@ -16,17 +19,38 @@
               </a>
               <table v-else>
                 <tr>
-                  <b>{{address.label}}</b>
+                  <b>{{ address.label }}</b>
                 </tr>
-                <tr>{{address.name}}</tr>
-                <tr>{{address.phone}}</tr>
-                <tr>{{address.detail}}</tr>
+                <tr>
+                  {{
+                    address.name
+                  }}
+                </tr>
+                <tr>
+                  {{
+                    address.phone
+                  }}
+                </tr>
+                <tr>
+                  {{
+                    address.detail
+                  }}
+                </tr>
 
-                <tr>{{address.city}} {{address.postalCode}}</tr>
+                <tr>
+                  {{
+                    address.city
+                  }}
+                  {{
+                    address.postalCode
+                  }}
+                </tr>
               </table>
             </div>
             <div class="card-footer">
-              <a href="#" v-if="!addressEdit" @click="shippingAddress()">Edit</a>
+              <a href="#" v-if="!addressEdit" @click="shippingAddress()"
+                >Edit</a
+              >
             </div>
           </div>
         </aside>
@@ -55,7 +79,9 @@
                 </table>
               </div>
               <div class="card-footer">
-                <button class="btn btn-primary btn-block" @click="modalShow">Continue</button>
+                <button class="btn btn-primary btn-block" @click="modalShow">
+                  Continue
+                </button>
               </div>
             </div>
           </div>
@@ -71,18 +97,31 @@
                 <div class="col-md-6">
                   <table>
                     <tr>
-                      <b>{{item}}</b>
+                      <b>{{ item }}</b>
                     </tr>
 
-                    <tr class="price">Rp.{{carts[item][0].price.toLocaleString()}}</tr>
-                    <tr class="text-muted">{{carts[item].length}} item</tr>
+                    <tr class="price">
+                      Rp.{{
+                        carts[item][0].price.toLocaleString()
+                      }}
+                    </tr>
+                    <tr class="text-muted">
+                      {{
+                        carts[item].length
+                      }}
+                      item
+                    </tr>
                   </table>
                 </div>
                 <div class="col-md-6">
                   <b>Shipping Duration</b>
-                  <br />JNE Courier (Rp.12.000)
+                  <br />{{
+                    carts[item].shipping ? carts[item].shipping.name : "-"
+                  }}
                   <p>
-                    <a href>Change</a>
+                    <a href="#" @click.prevent="modalShippingShow(item, index)"
+                      >Change</a
+                    >
                   </p>
                 </div>
               </div>
@@ -90,7 +129,7 @@
             <div class="card-footer">
               <table class="block">
                 <td>Subtotal</td>
-                <td class="text-right">{{invokeSubTotal(carts[item])}}</td>
+                <td class="text-right">{{ invokeSubTotal(carts[item]) }}</td>
               </table>
             </div>
           </div>
@@ -105,49 +144,92 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <small class="form-text text-muted">Label</small>
-                <input class="form-control" type="text" v-model="address.label" />
-                <small class="form-text text-muted">Example : Home, Office, Apartment, Dropship</small>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="address.label"
+                />
+                <small class="form-text text-muted"
+                  >Example : Home, Office, Apartment, Dropship</small
+                >
               </div>
               <!-- form-group end.// -->
               <div class="form-group col-md-8">
                 <small class="form-text text-muted">Receiver</small>
-                <input class="form-control" type="text" v-model="address.name" />
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="address.name"
+                />
                 <small class="form-text text-muted">Example : John Doe</small>
               </div>
               <div class="form-group col-md-4">
                 <small class="form-text text-muted">Phone</small>
-                <input class="form-control" type="text" v-model="address.phone" />
-                <small class="form-text text-muted">Example : 081234567890</small>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="address.phone"
+                />
+                <small class="form-text text-muted"
+                  >Example : 081234567890</small
+                >
               </div>
               <div class="form-group col-md-9">
                 <small class="form-text text-muted">City</small>
-                <input class="form-control" type="text" v-model="address.city" />
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="address.city"
+                />
                 <small class="form-text text-muted">Example : Jakarta</small>
               </div>
               <div class="form-group col-md-3">
                 <small class="form-text text-muted">Postal Code</small>
-                <input class="form-control" type="text" v-model="address.postalCode" />
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="address.postalCode"
+                />
                 <small class="form-text text-muted">Example : 15610</small>
               </div>
               <div class="form-group col-md-12">
-                <textarea class="form-control" type="textbox" rows="2" v-model="address.detail" />
+                <textarea
+                  class="form-control"
+                  type="textbox"
+                  rows="2"
+                  v-model="address.detail"
+                />
               </div>
-              <button class="btn btn-primary float-right btn-block" @click="saveAddress">Add</button>
-              <button class="btn btn-light float-right btn-block">Cancel</button>
+              <button
+                class="btn btn-primary float-right btn-block"
+                @click="saveAddress"
+              >
+                Add
+              </button>
+              <button class="btn btn-light float-right btn-block">
+                Cancel
+              </button>
             </div>
           </article>
         </div>
       </div>
     </modal>
     <CheckoutModal></CheckoutModal>
+    <ShippingListOptionModal
+      :productTitle="item"
+      :productIndex="index"
+    ></ShippingListOptionModal>
   </section>
 </template>
 <script>
 import CheckoutModal from "./CheckoutModal.vue";
+import ShippingListOptionModal from "./ShippingListOptionModal";
+
 export default {
   name: "CartDetails",
   components: {
-    CheckoutModal
+    CheckoutModal,
+    ShippingListOptionModal
   },
   props: {
     carts: {
@@ -160,6 +242,8 @@ export default {
       showModal: false,
       subTotal: 0,
       addressEdit: true,
+      item: "",
+      index: 0,
       address: {
         label: "",
         name: "",
@@ -175,6 +259,11 @@ export default {
       this.$modal.show("hello-world", {
         scrollable: true
       });
+    },
+    modalShippingShow(item, index) {
+      this.item = item;
+      this.index = index;
+      this.$modal.show("shipping-list");
     },
     invokeSubTotal(data) {
       return `Rp.${data
@@ -221,5 +310,5 @@ export default {
 .box-dashed {
   border: 2px solid #e4e4e4;
   border-style: dashed;
-}
-</style>;
+}</style
+>;

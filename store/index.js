@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import Product from "./product";
+import Courier from "./courier";
 import Review from "./review";
 import User from "./user";
 
@@ -13,17 +14,20 @@ const createStore = () => {
     state: {
       ...Product.state,
       ...User.state,
-      ...Review.state
+      ...Review.state,
+      ...Courier.state
     },
     getters: {
       ...Product.getters,
       ...User.getters,
-      ...Review.getters
+      ...Review.getters,
+      ...Courier.getters
     },
     mutations: {
       ...Product.mutations,
       ...User.mutations,
-      ...Review.mutations
+      ...Review.mutations,
+      ...Courier.mutations
     }
   });
 };
