@@ -72,7 +72,7 @@
                         <i class="icon-sm fa fa-user"></i>
                       </div>
                       <div class="text">
-                        <div class="overflow" v-if="email">{{ email }}</div>
+                        <div class="overflow-email" v-if="email">{{ email }}</div>
                         <div v-if="!isAuth">
                           <small class="text-muted">Sign In / Join</small>
                         </div>
@@ -174,10 +174,10 @@ export default {
 };
 </script>
 <style scoped>
-.overflow {
-  max-width: 300px;
+.overflow-email {
+  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: clip;
+  text-overflow: ellipsis;
 }
 </style>
