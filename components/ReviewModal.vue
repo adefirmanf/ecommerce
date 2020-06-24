@@ -16,7 +16,7 @@
         <main class="col-md-7">
           <div class="form-group">
             <small class="form-text text-muted">Your name</small>
-            <input name class="form-control" v-model="name" type="text" :disabled="isAuth" />
+            <input name class="form-control" v-model="name" type="text" />
           </div>
           <div class="form-group">
             <div class="row">
@@ -81,8 +81,10 @@ export default {
   },
   mounted() {
     if (this.$store.getters.GET_AUTH_STATUS) {
-      const user = this.$store.getters.GET_USER.profile;
-      this.name = user.name;
+      const user = this.$store.getters.GET_USER.profile
+        ? this.$store.getters.GET_USER.profile
+        : this.$store.getters.GET_USER;
+      this.name = user.name ? user.name : user.email.split("@")[0];
       this.email = user.email;
       this.image = user.picture;
       this.label = "verified";

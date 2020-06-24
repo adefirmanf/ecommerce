@@ -150,12 +150,11 @@ export default {
               }
             };
           }
-          console.log(temp);
           this.$store.dispatch("AUTHENTICATION", temp);
           this.$emit("okLogin", temp);
         })
         .catch(err => {
-          console.log(err);
+          alert(err);
           if (err.code == "auth/email-already-in-use") {
             alert("E-mail already in use");
             this.clear();
@@ -167,7 +166,11 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.signin.email, this.signin.password)
         .then(results => {
-          this.$store.dispatch("AUTHENTICATION", results);
+          let o = {
+            ...results,
+            additionalUserInfo: results.user
+          };
+          this.$store.dispatch("AUTHENTICATION", o);
           this.$emit("okLogin", results);
         })
         .catch(err => {

@@ -9,9 +9,7 @@
             </a>
           </div>
           <div class="col-lg col-sm col-md col-6 flex-grow-0">
-            <div
-              class="category-wrap dropdown show d-inline-block float-md-right"
-            >
+            <div class="category-wrap dropdown show d-inline-block float-md-right">
               <button
                 type="button"
                 class="btn dropdown-toggle"
@@ -21,22 +19,12 @@
                 <i class="fa fa-bars"></i> Kategori
               </button>
               <div class="dropdown-menu" x-placement="bottom-start">
-                <a class="dropdown-item" href="#"
-                  >Machinery / Mechanical Parts / Tools</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Consumer Electronics / Home Appliances</a
-                >
+                <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools</a>
+                <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances</a>
                 <a class="dropdown-item" href="#">Auto / Transportation</a>
-                <a class="dropdown-item" href="#"
-                  >Apparel / Textiles / Timepieces</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Home &amp; Garden / Construction / Lights</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Beauty &amp; Personal Care / Health</a
-                >
+                <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces</a>
+                <a class="dropdown-item" href="#">Home &amp; Garden / Construction / Lights</a>
+                <a class="dropdown-item" href="#">Beauty &amp; Personal Care / Health</a>
               </div>
             </div>
             <!-- category-wrap.// -->
@@ -50,12 +38,7 @@
                 v-model="product"
               />
               <div class="input-group-append">
-                <a
-                  :href="link"
-                  @click="search()"
-                  class="btn btn-light"
-                  type="submit"
-                >
+                <a :href="link" @click="search()" class="btn btn-light" type="submit">
                   <i class="fa fa-search"></i>
                 </a>
               </div>
@@ -75,24 +58,21 @@
                 >
                   <i class="fa fa-shopping-cart"></i>
                 </a>
-                <span class="badge badge-pill badge-danger notify">{{
+                <span class="badge badge-pill badge-danger notify">
+                  {{
                   totalCart
-                }}</span>
+                  }}
+                </span>
               </div>
               <div class="widget-header dropdown">
-                <a
-                  href="#"
-                  @click.prevent="show"
-                  data-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                <a href="#" @click.prevent="show" data-toggle="dropdown" aria-expanded="false">
                   <div class="text">
                     <div class="icontext">
                       <div class="icon">
                         <i class="icon-sm fa fa-user"></i>
                       </div>
                       <div class="text">
-                        <div v-if="email">{{ email }}</div>
+                        <div class="overflow" v-if="email">{{ email }}</div>
                         <div v-if="!isAuth">
                           <small class="text-muted">Sign In / Join</small>
                         </div>
@@ -154,7 +134,9 @@ export default {
       return this.$store.getters.GET_CARTS.length;
     },
     email() {
-      const user = this.$store.getters.GET_USER.profile;
+      const user = this.$store.getters.GET_USER.profile
+        ? this.$store.getters.GET_USER.profile
+        : this.$store.getters.GET_USER;
       return user.email || "Guest";
     },
     link() {
@@ -191,3 +173,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+.overflow {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+</style>
