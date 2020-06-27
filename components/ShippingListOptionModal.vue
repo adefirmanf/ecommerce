@@ -2,21 +2,14 @@
   <modal name="shipping-list" height="auto">
     <div class="card-body">
       <h6 class="card-title" small>Courier List</h6>
-      <a
-        href="#"
-        class="text-dark"
-        v-for="(courier, index) in courierList"
-        :key="index"
-      >
+      <a href="#" class="text-dark" v-for="(courier, index) in courierList" :key="index">
         <div class="card payment-opt" @click.prevent="selectedCourier(courier)">
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
                 <b>{{ courier.name }}</b>
                 <br />
-                <small class="text-muted"
-                  >Service : {{ courier.service }}</small
-                >
+                <small class="text-muted">Service : {{ courier.service }}</small>
               </div>
               <div class="col-md-6 justify-content-end text-right">
                 Rp. {{ courier.price }}
@@ -51,6 +44,11 @@ export default {
         courier: data,
         productTitle: this.productTitle
       });
+      this.$emit("setCourier", {
+        courier: data,
+        productTitle: this.productTitle
+      });
+      this.$modal.hide("shipping-list");
     }
   }
 };

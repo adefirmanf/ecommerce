@@ -3,6 +3,7 @@ import Product from "./product";
 import Courier from "./courier";
 import Review from "./review";
 import User from "./user";
+import Address from "./address";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -15,19 +16,22 @@ const createStore = () => {
       ...Product.state,
       ...User.state,
       ...Review.state,
-      ...Courier.state
+      ...Courier.state,
+      ...Address.state
     },
     getters: {
       ...Product.getters,
       ...User.getters,
       ...Review.getters,
-      ...Courier.getters
+      ...Courier.getters,
+      ...Address.getters
     },
     mutations: {
       ...Product.mutations,
       ...User.mutations,
       ...Review.mutations,
-      ...Courier.mutations
+      ...Courier.mutations,
+      ...Address.mutations
     }
   });
 };

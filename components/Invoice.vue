@@ -10,11 +10,11 @@
             <table>
               <b>Recipent</b>
               <p />
-              <tr>Sharon S Martinez</tr>
-              <tr>4349 School Street</tr>
-              <tr>Norwalk, CT</tr>
-              <tr>06851</tr>
-              <tr>203-202-8919</tr>
+              <tr>{{address.name}}</tr>
+              <tr>{{address.detail}}</tr>
+              <tr>{{address.city}}</tr>
+              <tr>{{address.postalCode}}</tr>
+              <tr>{{address.phone}}</tr>
             </table>
           </div>
           <div class="col-md-6 text-right d-flex justify-content-end">
@@ -37,20 +37,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Lorem ipsum</td>
-                <td>1</td>
-                <td class="text-right">10.000 IDR</td>
-              </tr>
-              <tr>
-                <td>Lorem ipsum</td>
-                <td>1</td>
-                <td class="text-right">10.000 IDR</td>
-              </tr>
-              <tr>
-                <td>Lorem ipsum</td>
-                <td>1</td>
-                <td class="text-right">10.000 IDR</td>
+              <tr v-for="(item, index) in Object.keys(carts)" :key="index">
+                <td>{{item}}</td>
+                <td>{{carts[item].length}}</td>
+                <td class="text-right">{{carts[item].length * carts[item][0].price}}</td>
               </tr>
             </tbody>
           </table>
@@ -85,3 +75,18 @@
     <!-- container // -->
   </section>
 </template>
+
+<script>
+export default {
+  props: {
+    carts: {
+      type: Object,
+      required: true
+    },
+    address: {
+      type: Object,
+      required: true
+    }
+  }
+};
+</script>

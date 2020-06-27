@@ -1,7 +1,8 @@
 import _ from "lodash";
 export default {
   state: {
-    selected: [],
+    selected: {},
+    totalPriceCourier: 0,
     courierList: [
       {
         name: "JNE",
@@ -31,23 +32,15 @@ export default {
   },
   getters: {
     GET_COURIER_LIST: state => state.courierList,
-    GET_SELECTED_COURIER: state => state.selected
+    GET_SELECTED_COURIER: state => productName => state.selected[productName],
+    GET_TOTAL_PRICE_COURIER: state => state.totalPriceCourier
   },
   mutations: {
     setCourierSelectedToCarts(state, data) {
-      function ungroup(n) {
-        return [n, n];
-      }
-      let a = _.groupBy(state.carts, "name")[data.productTitle].map(n => {
-        return { ...n, courier: data.courier };
-      });
-
-      let i = _.flatMap(a, ungroup);
-      state.carts = state.carts.map(n => {
-        console.log(n.name);
-      });
-
-      //   state.carts[index]
+      state.selected[data.productTitle] = data;
+    },
+    setCourierTotal(state, data) {
+      state.totalPriceCourier = data;
     }
   }
 };

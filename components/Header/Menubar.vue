@@ -96,6 +96,15 @@
         <Login @okLogin="okLogin"></Login>
       </div>
     </modal>
+    <modal name="empty-cart" height="auto" width="30%" :scrollable="true">
+      <div class="card-body">
+        <h4 class="card-title">
+          Oopss!
+          <br />
+          <small class="text-muted">Belanjaan kamu kosong nih, yuk coba cari-cari dulu</small>
+        </h4>
+      </div>
+    </modal>
   </header>
 </template>
 
@@ -165,6 +174,9 @@ export default {
     },
     cart() {
       if (this.isAuth) {
+        if (this.totalCart < 1) {
+          return this.$modal.show("empty-cart");
+        }
         this.$router.push("/cart");
       } else {
         this.$modal.show("login2");

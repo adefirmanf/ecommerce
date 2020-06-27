@@ -97,7 +97,7 @@ export default {
   async mounted() {
     await this.$store.dispatch("GET_DATA_PRODUCTS", {
       search: "kaos",
-      merchant: "blibli"
+      merchant: "shopee"
     });
     this.loaded = true;
   },
