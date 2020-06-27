@@ -4,11 +4,7 @@
       <div class="row">
         <aside class="col-md-3">
           <nav class="card">
-            <ul
-              class="menu-category"
-              v-for="(groupSidebar, index) in sidebar"
-              :key="index"
-            >
+            <ul class="menu-category" v-for="(groupSidebar, index) in sidebar" :key="index">
               <li class="has-submenu" v-if="groupSidebar.data.length > 1">
                 <a href>{{ groupSidebar.group }}</a>
                 <ul class="submenu">
@@ -16,7 +12,12 @@
                     v-for="(childMenu, indexZ) in groupSidebar.data"
                     :key="index.toString() + indexZ.toString()"
                   >
-                    <a href="#">{{ childMenu.name }}</a>
+                    <a
+                      :href="
+              'product/?search=' +
+                childMenu.name + ' ' + groupSidebar.group
+            "
+                    >{{ childMenu.name }}</a>
                   </li>
                 </ul>
               </li>
@@ -28,20 +29,15 @@
         </aside>
         <!-- col.// -->
         <div class="col-md-9">
-          <carousel
-            :perPage="1"
-            :autoplay="true"
-            :autoplayTimeout="5000"
-            :loop="true"
-          >
+          <carousel :perPage="1" :autoplay="true" :autoplayTimeout="5000" :loop="true">
             <slide>
               <div class="card">
-                <img src="banner1.jpg" class="card-img " />
+                <img src="banner1.jpg" class="card-img" />
               </div>
             </slide>
             <slide>
               <div class="card">
-                <img src="banner2.jpg" class="card-img " />
+                <img src="banner2.jpg" class="card-img" />
               </div>
             </slide>
           </carousel>

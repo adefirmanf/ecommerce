@@ -19,13 +19,13 @@
                       <div class="icontext mr-4">
                         <a href="#" class="icontext" data-toggle="dropdown" aria-expanded="false">
                           <img class="icon icon-xs rounded-circle" :src="data.img" />
-                          <div class="text">
+                          <div class="text overflow">
                             {{data.name}}
                             <span
                               :class="badge(data.label)"
                             >{{data.label || 'unverified'}}</span>
                             <br />
-                            <small class="text-muted">{{data.email}}</small>
+                            <small class="text-muted overflow">{{data.email}}</small>
                           </div>
                         </a>
                       </div>
