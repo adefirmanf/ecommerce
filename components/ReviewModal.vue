@@ -72,9 +72,8 @@ export default {
       email: "",
       review: "",
       label: "unverified",
-      image: `https://picsum.photos/id/${Math.floor(
-        Math.random() * (1000 - 1)
-      ) + 1}/512`,
+      image: `https://picsum.photos/id/${Math.floor(Math.random() * (999 - 1)) +
+        1}/512`,
       initStars: [true, true, true, true, true],
       rate: 0
     };
@@ -86,7 +85,10 @@ export default {
         : this.$store.getters.GET_USER;
       this.name = user.name ? user.name : user.email.split("@")[0];
       this.email = user.email;
-      this.image = user.picture;
+      this.image =
+        user.picture ||
+        `https://picsum.photos/id/${Math.floor(Math.random() * (999 - 1)) +
+          1}/512`;
       this.label = "verified";
     }
   },
