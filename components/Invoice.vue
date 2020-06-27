@@ -23,7 +23,7 @@
               <tr>1202</tr>
               <p />
               <b>Invoice Date</b>
-              <tr>02-04-2020</tr>
+              <tr>{{dateFormat}}</tr>
             </table>
           </div>
         </div>
@@ -33,14 +33,16 @@
               <tr>
                 <th scope="col" class="text-muted">ITEM</th>
                 <th scope="col" class="text-muted">QTY</th>
-                <th scope="col" class="text-muted text-right">AMOUNT</th>
+                <th scope="col" class="text-muted text-left">AMOUNT</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(item, index) in Object.keys(carts)" :key="index">
                 <td>{{item}}</td>
                 <td>{{carts[item].length}}</td>
-                <td class="text-right">{{carts[item].length * carts[item][0].price}}</td>
+                <td
+                  class="text-left"
+                >Rp. {{(carts[item].length * carts[item][0].price).toLocaleString()}}</td>
               </tr>
             </tbody>
           </table>
@@ -50,24 +52,24 @@
                 <thead>
                   <tr>
                     <th scope="col" class="text-muted">SUBTOTAL</th>
-                    <th scope="col" class="text-right">30.000 IDR</th>
+                    <th scope="col" class="text-right">Rp. {{totalItemPrice.toLocaleString()}}</th>
                   </tr>
                   <tr>
-                    <th scope="col" class="text-muted">COUPON</th>
-                    <th scope="col" class="text-right">25%</th>
+                    <th scope="col" class="text-muted">TOTAL SHIPPING</th>
+                    <th scope="col" class="text-right">Rp. {{totalShipping.toLocaleString()}}</th>
                   </tr>
                   <tr>
                     <th scope="col">TOTAL</th>
-                    <th scope="col" class="text-right">500.000 IDR</th>
+                    <th scope="col" class="text-right">Rp. {{total.toLocaleString()}}</th>
                   </tr>
                 </thead>
               </table>
             </div>
           </div>
         </article>
-        <span
+        <!-- <span
           class="text-muted"
-        >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        >Simpan bukti pembayaran ini sebagai alat bukti klaim apabila barang anda tidak sampai. Website ini ditujukan untuk </span>-->
         <!-- sect-heading -->
       </div>
       <!-- row.// -->
@@ -86,6 +88,24 @@ export default {
     address: {
       type: Object,
       required: true
+    },
+    totalShipping: {
+      type: Number,
+      required: true
+    }
+  },
+  computed: {
+    totalItemPrice() {
+      return this.$store.getters.GET_CARTS.map(a => a.price).reduce(
+        (a, b) => a + b
+      );
+    },
+    total() {
+      return this.totalItemPrice + this.totalShipping;
+    },
+    dateFormat() {
+      const date = new Date();
+      return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
     }
   }
 };

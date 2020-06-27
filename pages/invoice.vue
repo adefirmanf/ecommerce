@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <Invoice :address="address" :carts="carts"></Invoice>
+    <Invoice :address="address" :carts="carts" :totalShipping="totalShipping"></Invoice>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -22,14 +22,13 @@ export default {
   },
   computed: {
     address() {
-      let a = this.$store.getters.GET_ADDRESS;
-      console.log("ADDRESS", a);
-      return a;
+      return this.$store.getters.GET_ADDRESS;
     },
     carts() {
-      let a = this.$store.getters.GET_CARTS_BY_GROUP_QTY;
-      console.log("CARTS", a);
-      return a;
+      return this.$store.getters.GET_CARTS_BY_GROUP_QTY;
+    },
+    totalShipping() {
+      return this.$store.getters.GET_TOTAL_PRICE_COURIER;
     }
   }
 };
