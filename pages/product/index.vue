@@ -1,11 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <ProductListSearch
-      :products="products"
-      :loaded="loaded"
-      @productSelected="setProduct"
-    ></ProductListSearch>
+    <ProductListSearch :products="products" :loaded="loaded" @productSelected="setProduct"></ProductListSearch>
     <Footer></Footer>
   </div>
   <!-- section-header.// -->
@@ -39,7 +35,7 @@ export default {
   async mounted() {
     await this.$store.dispatch("GET_DATA_PRODUCTS", {
       search: this.$route.query.search,
-      merchant: "blibli,shopee"
+      merchant: "shopee"
     });
     this.loaded = true;
     this.products = this.$store.getters.GET_ALL_PRODUCTS;

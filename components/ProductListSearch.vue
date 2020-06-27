@@ -20,28 +20,20 @@
               </header>
               <div class="filter-content collapse show" id="collapse_2" style>
                 <div class="card-body">
-                  <label class="custom-control custom-checkbox">
+                  <label
+                    class="custom-control custom-checkbox"
+                    v-for="(merchant, i) in listMerchant"
+                    :key="i"
+                  >
                     <input
                       type="checkbox"
-                      checked
+                      @click="filterByMerchant(merchant)"
+                      :checked="merchant.active"
                       class="custom-control-input"
                     />
                     <div class="custom-control-label">
-                      Blibli
-                      <b class="badge badge-pill badge-light float-right"
-                        >120</b
-                      >
-                    </div>
-                  </label>
-                  <label class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      checked
-                      class="custom-control-input"
-                    />
-                    <div class="custom-control-label">
-                      Shoppe
-                      <b class="badge badge-pill badge-light float-right">15</b>
+                      {{merchant.alias}}
+                      <!-- <b class="badge badge-pill badge-light float-right">{{120}}</b> -->
                     </div>
                   </label>
                 </div>
@@ -64,30 +56,18 @@
               </header>
               <div class="filter-content collapse show" id="collapse_3" style>
                 <div class="card-body">
-                  <input
-                    type="range"
-                    class="custom-range"
-                    min="0"
-                    max="100"
-                    name
-                  />
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label>Min</label>
-                      <input
-                        class="form-control"
-                        placeholder="$0"
-                        type="number"
-                      />
+                      <input class="form-control" placeholder="Rp" type="number" v-model="min" />
+                      <small>Rp. {{min | formatNumber}}</small>
                     </div>
                     <div class="form-group text-right col-md-6">
                       <label>Max</label>
-                      <input
-                        class="form-control"
-                        placeholder="$1,0000"
-                        type="number"
-                      />
+                      <input class="form-control" placeholder="Rp" type="number" v-model="max" />
+                      <small>Rp. {{max | formatNumber}}</small>
                     </div>
+                    <!-- <button @click="filterByPrice" class="btn btn-primary btn-block">Filter</button> -->
                   </div>
                   <!-- form-row.// -->
                 </div>
@@ -110,28 +90,23 @@
               </header>
               <div class="filter-content collapse show" id="collapse_4" style>
                 <div class="card-body">
-                  <label class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      checked
-                      class="custom-control-input"
-                    />
-                    <div class="custom-control-label text-warning">
-                      <i class="fa fa-star"></i>
-                      3 Keatas
-                    </div>
-                  </label>
-                  <label class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      checked
-                      class="custom-control-input"
-                    />
-                    <div class="custom-control-label text-warning">
-                      <i class="fa fa-star"></i>
-                      4 Keatas
-                    </div>
-                  </label>
+                  <div class="form-group">
+                    <ul class="rating-stars">
+                      <li :style="{'width': 20*rate+'%'}" class="stars-active">
+                        <a href v-for="(s, index) in initStars" :key="index">
+                          <i class="fa fa-star" @click.prevent="rateUp(index)"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href v-for="(s, index) in initStars" :key="index">
+                          <i class="fa fa-star" @click.prevent="rateUp(index)"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <label>
+                      <small class="label-rating text-muted">{{rate}}+</small>
+                    </label>
+                  </div>
                 </div>
                 <!-- card-body.// -->
               </div>
@@ -206,19 +181,13 @@
                   <figcaption class="info-wrap">
                     <a href="#" class="title">{{ product.name }}</a>
                     <div class="price-wrap mt-1">
-                      <div class="price">
-                        Rp.{{ product.price.toLocaleString() }}
-                      </div>
+                      <div class="price">Rp.{{ product.price.toLocaleString() }}</div>
                       <img
                         v-if="product.merchant.name == 'blibli'"
                         src="~/assets/img/blibli.png"
                         class="img-xs"
                       />
-                      <img
-                        v-else
-                        src="~/assets/img/shopee2.png"
-                        class="img-xs"
-                      />
+                      <img v-else src="~/assets/img/shopee2.png" class="img-xs" />
                       <br />
                       <ul class="rating-stars">
                         <li
@@ -239,9 +208,11 @@
                           <i class="fa fa-star"></i>
                         </li>
                       </ul>
-                      <small class="text-muted">{{
+                      <small class="text-muted">
+                        {{
                         product.review.count
-                      }}</small>
+                        }}
+                      </small>
                       <!-- <del class="price-old">$1980</del> -->
                       <!-- price-wrap.// -->
                     </div>
@@ -301,6 +272,22 @@ export default {
   },
   data() {
     return {
+      rate: 0,
+      initStars: [true, true, true, true, true],
+      listMerchant: [
+        {
+          merchantName: "blibli",
+          alias: "Blibli",
+          active: true
+        },
+        {
+          merchantName: "shopee",
+          alias: "Shopee",
+          active: true
+        }
+      ],
+      min: 0,
+      max: 0,
       listProduct: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
   },
@@ -309,11 +296,37 @@ export default {
       this.$modal.show("loading");
     });
   },
+  filters: {
+    formatNumber: function(value) {
+      return Number(value).toLocaleString();
+    }
+  },
   computed: {
     concatProducts() {
       if (this.loaded) {
         this.$modal.hide("loading");
-        return this.products[0].data.concat(this.products[1].data);
+        let tempProduct = [];
+        this.listMerchant.map(({ merchantName, active } = data) => {
+          this.products.map(({ merchant, data } = n) => {
+            if (merchantName == merchant && active == true) {
+              tempProduct.push(data);
+            }
+          });
+        });
+        const filterPrice = data => {
+          if (this.min == 0 && this.max == 0) {
+            return this.min <= data.price;
+          } else {
+            return this.min <= data.price && data.price <= this.max;
+          }
+        };
+        const filterRating = data => {
+          return this.rate <= data.review.rating;
+        };
+        return tempProduct
+          .flat()
+          .filter(filterPrice)
+          .filter(filterRating);
       } else {
         return [];
       }
@@ -334,6 +347,20 @@ export default {
     },
     testModal() {
       this.$modal.show("test");
+    },
+    filterByMerchant(merchant) {
+      this.listMerchant.map(n => {
+        if (n.merchantName == merchant.merchantName) {
+          n.active = !merchant.active;
+        }
+      });
+    },
+    rateUp(position) {
+      if (this.rate == position + 1) {
+        this.rate = 0;
+      } else {
+        this.rate = position + 1;
+      }
     }
   }
 };

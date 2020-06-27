@@ -5,7 +5,7 @@
         <div class="row align-items-center">
           <div class="col-lg-2 col-4">
             <a href="/" class="brand-wrap">
-              <img class="logo" src="logocaribaju-cropped.png" />
+              <img class="logo" src="~/assets/img/logocaribaju-cropped.png" />
             </a>
           </div>
           <div class="col-lg col-sm col-md col-6 flex-grow-0">
