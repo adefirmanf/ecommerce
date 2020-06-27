@@ -200,11 +200,11 @@ export default {
       }
     },
     reviews() {
-      return _.chunk(this.$store.getters.GET_DATA_REVIEWS, 4)[this.page];
+      return _.chunk(this.$store.getters.GET_DATA_REVIEWS, 4)[this.page - 1];
     },
     maxPage() {
       if (this.reviews) {
-        return _.chunk(this.$store.getters.GET_DATA_REVIEWS, 4).length - 1;
+        return _.chunk(this.$store.getters.GET_DATA_REVIEWS, 4).length;
       }
     },
     selectedData() {
