@@ -12,6 +12,7 @@
             <div class="category-wrap dropdown show d-inline-block float-md-right">
               <button
                 type="button"
+                @click.prevent="showCategory"
                 class="btn dropdown-toggle"
                 data-toggle="dropdown show"
                 aria-expanded="false"
@@ -105,13 +106,16 @@
         </h4>
       </div>
     </modal>
+    <CategoryModal :categories="categories"></CategoryModal>
   </header>
 </template>
 
 <script>
 import Login from "~/components/Login.vue";
+import CategoryModal from "~/components/ShowCategoryModal.vue";
 export default {
   components: {
+    CategoryModal,
     Login
   },
   data() {
@@ -150,6 +154,9 @@ export default {
     },
     link() {
       return `/product?search=${this.product}`;
+    },
+    categories() {
+      return this.$store.getters.GET_CATEGORIES;
     }
   },
   methods: {
@@ -181,6 +188,9 @@ export default {
       } else {
         this.$modal.show("login2");
       }
+    },
+    showCategory() {
+      this.$modal.show("category");
     }
   }
 };
