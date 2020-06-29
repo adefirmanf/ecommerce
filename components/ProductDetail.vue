@@ -71,41 +71,6 @@
 
             <hr />
             <div class="form-row">
-              <div class="form-group col-md flex-grow-0">
-                <label>Quantity</label>
-                <div class="input-group mb-3 input-spinner">
-                  <div class="input-group-prepend">
-                    <button class="btn btn-light" type="button" id="button-plus">+</button>
-                  </div>
-                  <input type="text" class="form-control" value="1" />
-                  <div class="input-group-append">
-                    <button class="btn btn-light" type="button" id="button-minus">−</button>
-                  </div>
-                </div>
-              </div>
-              <!-- col.// -->
-              <div class="form-group col-md">
-                <label>Select size</label>
-                <div class="mt-1">
-                  <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="select_size" checked class="custom-control-input" />
-                    <div class="custom-control-label">Small</div>
-                  </label>
-
-                  <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="select_size" class="custom-control-input" />
-                    <div class="custom-control-label">Medium</div>
-                  </label>
-
-                  <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="select_size" class="custom-control-input" />
-                    <div class="custom-control-label">Large</div>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <div class="form-row">
               <div class="form-group col-md">
                 <a href class="text-dark">
                   <div class="card merchant-list selected">
