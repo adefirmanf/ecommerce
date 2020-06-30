@@ -9,11 +9,12 @@
                 <tr class="small text-uppercase">
                   <th scope="col">Product</th>
                   <th scope="col" width="120">Quantity</th>
+                  <th scope="col" width="120"></th>
                   <th scope="col" width="120">Price</th>
                   <th scope="col" class="text-right" width="200"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody v-if="carts">
                 <tr v-for="(item, index) in Object.keys(carts)" :key="index">
                   <td>
                     <figure class="itemside align-items-center">
@@ -25,28 +26,16 @@
                       </figcaption>
                     </figure>
                   </td>
+                  <td>x {{carts[item].length}}</td>
                   <td>
-                    <select class="form-control" disabled>
-                      <option>{{carts[item].length}}</option>
-                    </select>
+                    <!-- <div class="price-wrap">
+                      <var class="price">Rp.{{carts[item][0].price.toLocaleString()}}</var>
+                    </div>-->
                   </td>
                   <td>
                     <div class="price-wrap">
                       <var class="price">Rp.{{carts[item][0].price.toLocaleString()}}</var>
                     </div>
-                    <!-- price-wrap .// -->
-                  </td>
-                  <td class="text-right">
-                    <a
-                      data-original-title="Save to Wishlist"
-                      title
-                      href
-                      class="btn btn-light"
-                      data-toggle="tooltip"
-                    >
-                      <i class="fa fa-heart"></i>
-                    </a>
-                    <a href class="btn btn-light">Remove</a>
                   </td>
                 </tr>
               </tbody>
@@ -130,6 +119,9 @@ export default {
     shipping() {
       this.$router.push("shipping");
     }
+    // removeItems(data) {
+    //   this.$emit("removeItems", data);
+    // }
   }
 };
 </script>

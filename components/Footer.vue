@@ -10,11 +10,11 @@
             <h6 class="title">Partners</h6>
             <ul class="list-unstyled">
               <li>
-                <a href="#">Shopee</a>
+                <a href="https://shopee.co.id/">Shopee</a>
               </li>
 
               <li>
-                <a href="#">Blibli</a>
+                <a href="https://blibli.com/">Blibli</a>
               </li>
             </ul>
           </aside>
@@ -41,7 +41,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://youtu.be/Gp5mx_Zj-os">
                   <i class="fab fa-youtube"></i> Youtube
                 </a>
               </li>
@@ -55,10 +55,14 @@
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center">
             <div class="col-md-3">
-              <img src="~/assets/img/shopee2.png" class="footer-brand img-md" />
+              <a href="https://shopee.co.id/">
+                <img src="~/assets/img/shopee2.png" class="footer-brand img-md" />
+              </a>
             </div>
             <div class="col-md-3">
-              <img src="~/assets/img/blibli.png" class="footer-brand img-md" />
+              <a href="https://blibli.com/">
+                <img src="~/assets/img/blibli.png" class="footer-brand img-md" />
+              </a>
             </div>
           </div>
         </div>
