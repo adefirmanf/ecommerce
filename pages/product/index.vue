@@ -35,7 +35,7 @@ export default {
   async mounted() {
     await this.$store.dispatch("GET_DATA_PRODUCTS", {
       search: this.$route.query.search,
-      merchant: "shopee"
+      merchant: "blibli,shopee"
     });
     this.loaded = true;
     this.products = this.$store.getters.GET_ALL_PRODUCTS;

@@ -11,12 +11,13 @@
     <Footer></Footer>
     <modal name="login" height="auto" width="30%" :scrollable="true">
       <div class="card">
-        <div class="alert alert-warning" role="alert">
-          You need login before purchasing from our site
-        </div>
+        <div class="alert alert-warning" role="alert">You need login before purchasing from our site</div>
         <Login @okLogin="okLogin"></Login>
         <div class="card-footer">
-          <a href>No, thanks. I will purchase from original website</a>
+          <a
+            :href="getOriginalProduct"
+            target="_blank"
+          >No, thanks. I will purchase from original website</a>
         </div>
       </div>
     </modal>
@@ -73,6 +74,20 @@ export default {
     },
     similiarProduct() {
       return this.$store.getters.GET_SIMILIAR_PRODUCT;
+    },
+    getOriginalProduct() {
+      const [merchant, id, sku] = this.$route.params.id.split("_");
+      const product = this.$store.getters.GET_PRODUCT_BY_ID;
+      let productNameUrl;
+      if (product.name) {
+        productNameUrl = product.name.split(" ").join("-");
+        switch (merchant) {
+          case "blibli":
+            return "https://www.blibli.com/jual/" + productNameUrl;
+          case "shopee":
+            return "https://shopee.co.id/search?keyword=" + productNameUrl;
+        }
+      }
     }
   },
   async mounted() {},
